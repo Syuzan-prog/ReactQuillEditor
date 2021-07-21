@@ -1,0 +1,53 @@
+html,
+body,
+#root {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100vw;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: "Quicksand-Regular", Fallback, sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+@font-face {
+    font-family: "Quicksand-Regular";
+    src: url("./fonts/Quicksand-Regular.ttf");
+}
+
+a {
+    color: unset;
+    text-decoration: none;
+
+    &.with-underline {
+        text-decoration: underline;
+    }
+}
+
+input,
+button {
+    border-radius: 10px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.page-container {
+    display: flex;
+    width: calc(100% - 142px);
+    min-height: calc(100vh - 54px);
+    padding: 30px 24px 24px 38px;
+    background-color: rgba(85, 85, 206, .08);
+}
+
+.full-width {
+    width: 100%;
+}
+
+
+
