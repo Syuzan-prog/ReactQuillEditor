@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
+
 import QuillEditor from '../QuillEditor';
 import Button from 'components/common/Button';
 
@@ -17,20 +18,25 @@ const CreatePage = () => {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        console.log('content>',content)
         dispatch(saveDocument(content));
     };
 
     return (
         <div className={styles.container}>
-            <h5>ReactQuill</h5>
-            <QuillEditor placeholder={'Start Posting Something'} onEditorChange={onEditorChange} />
+            <div>
+                <h5>ReactQuill</h5>
+                <QuillEditor
+                    className={styles.block}
+                    placeholder={'Start Posting Something'}
+                    onEditorChange={onEditorChange}
+                />
 
-            <form onSubmit={onSubmit}>
-                <div className={styles.button}>
-                    <Button label="Submit" type="submit" />
-                </div>
-            </form>
+                <form onSubmit={onSubmit}>
+                    <div className={styles.button}>
+                        <Button label="Submit" type="submit" />
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };

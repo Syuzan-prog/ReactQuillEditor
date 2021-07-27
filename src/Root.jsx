@@ -1,6 +1,9 @@
 import React, { Suspense, lazy } from 'react';
 
 import { Router, Switch, Route } from 'react-router-dom';
+import katex from 'katex';
+
+window.katex = katex;
 
 import appHistory from 'configs/app.history';
 import { routes } from 'configs/app.routes';

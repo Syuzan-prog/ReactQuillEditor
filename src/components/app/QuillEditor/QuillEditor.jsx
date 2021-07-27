@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import ReactQuill, { Quill } from 'react-quill';
+import ReactQuill from 'react-quill';
 import PropTypes from 'prop-types';
 
 import { models, formats } from './modules';
 import QuillHeader from './QuillHeadr';
 
 import styles from './QuillEditor.scss';
+import JsWord from './JsWord';
 
 
 const QuillEditor = ({ placeholder, onEditorChange }) => {
@@ -17,9 +18,11 @@ const QuillEditor = ({ placeholder, onEditorChange }) => {
     };
 
     return (
-        <>
-            <QuillHeader/>
+        <div className={styles.card}>
+            <JsWord/>
+            <QuillHeader />
             <ReactQuill
+                id="reactQuill"
                 theme="snow"
                 value={editorHtml}
                 modules={models}
@@ -28,7 +31,8 @@ const QuillEditor = ({ placeholder, onEditorChange }) => {
                 placeholder={placeholder}
                 className={styles.quillEditor}
             />
-        </>
+            
+        </div>
     );
 };
 
