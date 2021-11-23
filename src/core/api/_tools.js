@@ -1,7 +1,7 @@
 import { createPath, parsePath } from 'history';
 import { parse, stringify } from 'query-string';
 
-import { HTTP_STATUS_BAD_REQUEST } from 'constants/http.constants';
+import { VALIDATION_ERROR_CODES } from 'constants/http.constants';
 import { getToken } from 'core/utils/token';
 
 import formatValidationErrors from './_errors';
@@ -32,7 +32,7 @@ const prepareRequestHeaders = (options) => {
 
     const headers = options.headers ? new Headers(options.headers) : new Headers();
 
-    headers.append('Authorization', `Bearer ${token}`);
+    headers.append('Authorization', token ? `Bearer ${token}` : null);
     headers.append('Accept', 'application/json');
 
     return headers;
@@ -41,7 +41,7 @@ const prepareRequestHeaders = (options) => {
 const prepareRequestOptions = (options) => ({
     credentials: 'same-origin',
     ...options,
-    // headers: prepareRequestHeaders(options),
+    headers: prepareRequestHeaders(options),
 });
 
 const readResponse = (response) => {
@@ -55,15 +55,15 @@ const handleError = (response, data) => {
     let error = data;
 
     const isJson = isResponseJSON(response);
-    if (isJson && response.status === HTTP_STATUS_BAD_REQUEST) {
+    if (isJson && VALIDATION_ERROR_CODES.includes(response.status)) {
         error = formatValidationErrors(data);
         error.validation = true;
     }
 
-    return { error, ok: false };
+    return { error, success: false };
 };
 
-const handleSuccess = (response, data) => ({ response: data, ok: true });
+const handleSuccess = (response, data) => ({ data, success: true });
 
 const apiRequest = (endpoint, options = {}) => {
     const opts = prepareRequestOptions(options);
@@ -73,7 +73,7 @@ const apiRequest = (endpoint, options = {}) => {
         .then((response) => readResponse(response)
             .then((data) => (response.ok ? handleSuccess(response, data) : handleError(response, data)))
             .then((data) => ({
-                ...data.response,
+                ...data,
                 [IS_API]: true,
                 [NO_HANDLE]: options.noHandle || false,
                 status: response.status,
@@ -81,7 +81,7 @@ const apiRequest = (endpoint, options = {}) => {
         .catch((error) => ({
             [IS_API]: false,
             error,
-            ok: false,
+            success: false,
             status: -1,
         }));
 };

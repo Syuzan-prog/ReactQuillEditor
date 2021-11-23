@@ -1,4 +1,31 @@
-export const editor = {
-    sendDocument: () => ``,
+export const auth = {
+    signin: () => `${APP_API_URL}/auth/signin/`,
+    signup: () => `${APP_API_URL}/auth/signup/`,
+    recoverPassword: () => `${APP_API_URL}/auth/recover_password/`,
+    resetPassword: () => `${APP_API_URL}/auth/reset_password/`,
+    join: () => `${APP_API_URL}/join_waitlist/`,
+    verify: (token) => `${APP_API_URL}/auth/verify/email/${token}/`,
+    verification: {
+        meta: () => `${APP_API_URL}/auth/onboarding_step/`,
+        requestCode: () => `${APP_API_URL}/auth/send_code/`,
+        sendCode: () => `${APP_API_URL}/auth/verify_email/`,
+    },
 };
 
+export const account = {
+    me: () => `${APP_API_URL}/users/me/`,
+    changePassword: () => `${APP_API_URL}/users/me/change_password/`,
+    changeRecoveryEmail: () => `${APP_API_URL}/users/me/set_recovery_email/`,
+    verifyRecoveryEmail: () => `${APP_API_URL}/users/me/verify_recovery_email/`,
+    publications: () => `${APP_API_URL}/users/me/update_publications/`,
+};
+
+export const dataFetchers = {
+    categories: () => `${APP_API_URL}/category/all`,
+    sponsors: () => `${APP_API_URL}/sponsor/all/`,
+    researchers: () => `${APP_API_URL}/researchers_by_institution/`,
+};
+
+export const editor = {
+    sendDocument : () => `${APP_API_URL}//`,
+}

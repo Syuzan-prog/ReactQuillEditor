@@ -12,7 +12,7 @@ export const saveDocumentSuccess = createAction(`${namespace} | save document su
 export const saveDocumentFail = createAction(`${namespace} | save document fail`, (error) => error);
 
 function* saveDocumentSaga({ payload: { document } }) {
-    const { success, data, error } = yield call(api.quillEditor.saveDocument, document);
+    // const { success, data, error } = yield call(api.quillEditor.saveDocument, document);
 
     if (success) {
         yield put(saveDocumentSuccess(data));

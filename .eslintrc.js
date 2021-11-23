@@ -92,6 +92,7 @@ const settings = {
         'implicit-arrow-linebreak': 'off',
         'object-curly-newline': 'off',
         'no-multi-assign': 'off',
+        'no-await-in-loop': 'off',
 
         // react rules
         'react/jsx-indent': [
@@ -236,6 +237,7 @@ const settings = {
     },
     globals: {
         APP_API_URL: true,
+        Intercom: true,
     },
 };
 

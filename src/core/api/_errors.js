@@ -1,8 +1,12 @@
-export const GENERIC_VALIDATION_ERROR_FIELD_NAME = 'nonFieldErrors';
+import { camelizeKeys } from 'humps';
+
+export const GENERIC_VALIDATION_ERROR_FIELD_NAME = '_error';
 
 /* eslint-disable no-param-reassign */
 // Error format { fieldName: ['error1', 'error2', ...] }
 const formatValidationErrors = (errors) => {
+    errors = camelizeKeys(errors);
+
     if (errors[GENERIC_VALIDATION_ERROR_FIELD_NAME]) {
         errors._error = errors[GENERIC_VALIDATION_ERROR_FIELD_NAME];
         delete errors[GENERIC_VALIDATION_ERROR_FIELD_NAME];

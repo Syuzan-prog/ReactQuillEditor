@@ -1,23 +1,9 @@
 .container {
-    display: flex;
-    justify-content: center;
-    width: 1400px;
-    margin: 0 auto;
     text-align: center;
-
     &>:nth-child(2) {
         position: sticky;
         top: 0px;
         z-index: 1;
         background: white!important;
     }
-
-    .button {
-        margin-top: 30px;
-    }
-
-    .block {
-        margin: 0 auto !important;
-    }
-    
 }

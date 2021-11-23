@@ -1,10 +1,11 @@
 const dotenv = require('dotenv').config(); // eslint-disable-line no-unused-vars
 const path = require('path');
 const webpack = require('webpack');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+// const CopyPlugin = require('copy-webpack-plugin');
+// const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = {
     entry: path.resolve(__dirname, '../src/index.jsx'),
@@ -73,15 +74,11 @@ module.exports = {
         ],
     },
     plugins: [
-        // new CopyWebpackPlugin([
-        //     {
-        //         from: path.resolve(__dirname, '../public/data/products-small.json'),
-        //         to: path.resolve(__dirname, '/dist'),
-        //     },
-        // ]),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../public/index.html'),
+            intercomAppId: process.env.INTERCOM_APP_ID,
         }),
+        // new FaviconsWebpackPlugin(path.resolve(__dirname, '../public/favicon.png')),
         new MiniCssExtractPlugin({
             filename: '[name].[hash].css',
             chunkFilename: '[id].[hash].css',
@@ -100,6 +97,14 @@ module.exports = {
                 ],
             },
         }),
+        // new CopyPlugin({
+        //     patterns: [
+        //         {
+        //             from: 'public/static',
+        //             to: 'static',
+        //         },
+        //     ],
+        // }),
     ],
     resolve: {
         extensions: ['*', '.js', '.jsx', '.scss'],

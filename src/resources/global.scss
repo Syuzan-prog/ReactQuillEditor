@@ -1,0 +1,92 @@
+html,
+body,
+#root {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100vw;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: "Roboto-Regular", Fallback, sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    background-color: #F5F8FB;
+}
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url("./fonts/Roboto-Regular.ttf");
+
+    /* IE9 Compat Modes */
+    // src: url("./fonts/Roboto-Regular.woff2") format("woff2"),
+    // /* Super Modern Browsers */ url("./fonts/Roboto-Regular.woff2") format("truetype");
+
+    /* Safari, Android, iOS */
+}
+
+.full-width {
+    width: 100%;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.ql-font-arial,
+.ql-font span[data-value="arial"]::before {
+    font-family: Arial, sans-serif;
+}
+
+.ql-font-comic-sans,
+.ql-font span[data-value="comic-sans"]::before {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.ql-font-courier-new,
+.ql-font span[data-value="courier-new"]::before {
+    font-family: "Courier New";
+}
+
+.ql-font-georgia,
+.ql-font span[data-value="georgia"]::before {
+    font-family: Georgia, serif;
+}
+
+.ql-font-helvetica,
+.ql-font span[data-value="helvetica"]::before {
+    font-family: Helvetica, sans-serif;
+}
+
+.ql-font-lucida,
+.ql-font span[data-value="lucida"]::before {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.m-r-8 {
+    margin-right: 8px !important;
+}
+
+.m-b-8 {
+    margin-bottom: 8px !important;
+}
+
+.m-b-16 {
+    margin-bottom: 16px !important;
+}
+
+.p-16 {
+    padding: 16px;
+}
+
+.page-loader {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.contact-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

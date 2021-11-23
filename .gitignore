@@ -7,3 +7,4 @@ yarn-error.log
 .env
 stats.json.log
 **/.DS_Store
+deploy*.sh

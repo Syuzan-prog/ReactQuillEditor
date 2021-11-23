@@ -1,8 +1,20 @@
 export const routes = {
     landing: '/',
+    signin: '/',
+    signup: '/signup',
+    signupSuccess: '/signup/success',
+    recoverPassword: '/recover-password',
+    recoverSuccess: '/recover-password/success',
+    resetPassword: '/reset-password',
+    resetSuccess: '/reset-password/success',
+    termsConditions: '/terms-and-conditions',
+    join: '/join',
+    joinSuccess: '/join/success',
+    verify: '/verify',
     app: '/app',
     _app: {
-        createPage: '/app/createPage',
-        quillEditor: '/app/quillEditor',
+        dashboard: '/app/dashboard',
+        messages: '/app/messages',
+        settings: '/app/settings',
     },
 };

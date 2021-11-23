@@ -1,42 +1,25 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
+import Typography from '@mui/material/Typography';
 
-import QuillEditor from '../QuillEditor';
 import Button from 'components/common/Button';
 
+import QuillEditor from './QuillEditor';
+
 import styles from './CreatePage.scss';
-import { saveDocument } from 'state/modules/quillEditor.module';
 
 const CreatePage = () => {
-    const dispatch = useDispatch();
-    const [content, setContent] = useState('');
-
-    const onEditorChange = (value) => {
-        setContent(value);
-    };
-
-    const onSubmit = (event) => {
-        event.preventDefault();
-        dispatch(saveDocument(content));
-    };
-
     return (
         <div className={styles.container}>
-            <div>
-                <h5>ReactQuill</h5>
-                <QuillEditor
-                    className={styles.block}
-                    placeholder={'Start Posting Something'}
-                    onEditorChange={onEditorChange}
-                />
-
-                <form onSubmit={onSubmit}>
-                    <div className={styles.button}>
-                        <Button label="Submit" type="submit" />
-                    </div>
-                </form>
-            </div>
+            <Typography>ReactQuill</Typography>
+            <QuillEditor placeholder={'Start Posting Something'} />
+            <Button
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                >
+                    Sign In
+            </Button>
         </div>
     );
 };

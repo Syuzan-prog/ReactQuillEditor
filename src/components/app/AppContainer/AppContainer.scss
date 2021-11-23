@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.pageContainer {
+    padding: 42px 16px 24px 16px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    width: calc(100vw - 250px);
+}
