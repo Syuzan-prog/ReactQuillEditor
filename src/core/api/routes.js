@@ -27,5 +27,5 @@ export const dataFetchers = {
 };
 
 export const editor = {
-    sendDocument : () => `${APP_API_URL}//`,
-}
+    createPage: () => `${APP_API_URL}//`,
+};
