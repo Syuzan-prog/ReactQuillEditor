@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import ReactToPrint from 'react-to-print';
 
 import IconButton from '@mui/material/IconButton';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
@@ -8,14 +7,13 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import RedoIcon from '@mui/icons-material/Redo';
 import UndoIcon from '@mui/icons-material/Undo';
 
-// import PrintIcon from '@mui/icons-material/Print';
+import Table from './Table';
 
 import { getPDF, getDocx } from './editorFunc';
 
-const EditorToolbar = ({ value }) =>
-    // const handleUploadClick = useCallback(() => {
-    //     containerRef?.current.click();
-    // }, [containerRef]);
+const EditorToolbar = ({ value, reactQuill }) =>
+
+// console.log(editor)
     (
         <div id="toolbar">
             <span className="ql-formats">
@@ -30,13 +28,25 @@ const EditorToolbar = ({ value }) =>
                     <option value="lucida">Lucida</option>
                 </select>
                 <select className="ql-size" defaultValue="14px">
-                    <option value="10px">10px</option>
-                    <option value="12px">12px</option>
-                    <option value="14px">14px</option>
-                    <option value="16px">16px</option>
-                    <option value="20px">20px</option>
-                    <option value="24px">24px</option>
-                    <option value="36px">36px</option>
+                    <option value="10px">10</option>
+                    <option value="12px">12</option>
+                    <option value="14px">14</option>
+                    <option value="16px">16</option>
+                    <option value="20px">20</option>
+                    <option value="24px">24</option>
+                    <option value="36px">36</option>
+                </select>
+                <select className="ql-lineheight custom-control" defaultValue="1.5">
+                    <option value="1.0">1.0</option>
+                    <option value="1.2">1.2</option>
+                    <option value="1.5">1.5</option>
+                    <option value="1.8">1.8</option>
+                    <option value="2.0">2.0</option>
+                    <option value="2.4">2.4</option>
+                    <option value="2.8">2.8</option>
+                    <option value="3.0">2.0</option>
+                    <option value="4.0">2.4</option>
+                    <option value="5.0">2.8</option>
                 </select>
                 <select className="ql-header" defaultValue="3">
                     <option value="1">Heading</option>
@@ -50,6 +60,7 @@ const EditorToolbar = ({ value }) =>
                 <IconButton className="ql-underline" />
                 <IconButton className="ql-strike" />
             </span>
+
             <span className="ql-formats">
                 <IconButton className="ql-list" value="ordered" />
                 <IconButton className="ql-list" value="bullet" />
@@ -83,29 +94,17 @@ const EditorToolbar = ({ value }) =>
                     <RedoIcon />
                 </IconButton>
             </span>
-
+            <Table editor={reactQuill} />
             <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => getPDF(value)}>
                 <PictureAsPdfIcon />
             </IconButton>
             <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => getDocx(value)}>
                 <InsertDriveFileIcon />
             </IconButton>
-            {/* <>
-                <ReactToPrint
-                    trigger={() => (
-                        <IconButton color="primary" aria-label="upload picture" component="span">
-                            <PrintIcon />
-                        </IconButton>
-                  )}
-                    content={() => containerRef}
-                />
-            </> */}
         </div>
     );
 EditorToolbar.propTypes = {
-    // value: PropTypes.oneOfType(PropTypes.string, PropTypes.instanceOf(Delta)),
-    value: PropTypes.any,
-    containerRef: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+    value: PropTypes.string,
 };
 
 export default EditorToolbar;

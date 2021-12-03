@@ -4,18 +4,26 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 
 export const getPDF = async (value) => {
+    
     if (value) {
-        const el = document.getElementById('reactQuill');
+        const el = document.getElementById('editor');
 
         const canvas = await html2canvas(el);
 
-        const myImage = await canvas.toDataURL('image/jpeg, 1.0');
+        const image = await canvas.toDataURL('image/png');
 
-        const pdf = new jsPDF('p', 'mm', 'a4');
+        const doc = new jsPDF('p', 'mm', 'a4');
 
-        pdf.addImage(myImage, 'png', 5, 5, 200, 0);
+        doc.addImage(image, 'PNG', 0, 0);
+        // console.log(doc.internal.getNumberOfPages())
+        // var doc = new jsPDF('landscape') //horizonakan paper
+        // doc.internal.getNumberOfPages() // qani paper ka
+        // doc.autoTable
+        // doc.addPage() // nor paper i avelacum 
+        // doc.deletePage(1) // jnjum e 1 papery
+        // doc.text(20, 20, 'Do you like that?')
 
-        pdf.save('test.pdf');
+        doc.save('test.pdf');
     } else {
         alert('');
     }

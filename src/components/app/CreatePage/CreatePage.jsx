@@ -1,29 +1,41 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Field } from 'redux-form';
+import { change, Field } from 'redux-form';
 
 import Button from 'components/common/Button';
-import Editor from 'components/common/Editor';
-
 import { EDITOR_FIELD_NAME } from 'constants/editor.constants';
+import Editor from './Editor';
 
 import { CreatePageWrapper } from './CreatePage.styles';
 
-const CreatePage = ({ handleSubmit }) => (
-    <CreatePageWrapper onSubmit={handleSubmit} className="container">
-        <Field component={Editor} id="editor" name={EDITOR_FIELD_NAME} className="editor" />
-        <Button
-            type="submit"
-            color="primary"
-            variant="contained"
-        >
-            Create Page
-        </Button>
-    </CreatePageWrapper>
-);
+const CreatePage = ({ dispatch, form }) => {
+    const [editorHtml, setEditorHtml] = useState('');
+
+    const handleChange = useCallback((event, html) => {
+        setEditorHtml(event);
+        dispatch(change(form, EDITOR_FIELD_NAME, event));
+        // change(EDITOR_FIELD_NAME, html);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    return (
+        <CreatePageWrapper className="container">
+            <div>
+                <Editor onChange={handleChange} value={editorHtml} id="editor" name={EDITOR_FIELD_NAME} className="editor" />
+                <Button
+                    type="submit"
+                    color="primary"
+                    variant="contained"
+                >
+                    Create Page
+                </Button>
+            </div>
+        </CreatePageWrapper>
+    );
+};
 
 CreatePage.propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
+    dispatch: PropTypes.func.isRequired,
+    form: PropTypes.string.isRequired,
 };
 
 export default CreatePage;
