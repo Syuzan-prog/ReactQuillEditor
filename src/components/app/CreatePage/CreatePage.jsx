@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import { change } from 'redux-form';
 
 import Button from 'components/common/Button';
 import { EDITOR_FIELD_NAME } from 'constants/editor.constants';
@@ -8,13 +7,12 @@ import Editor from './Editor';
 
 import { CreatePageWrapper } from './CreatePage.styles';
 
-const CreatePage = ({ dispatch, form }) => {
+const CreatePage = ({ change }) => {
     const [editorHtml, setEditorHtml] = useState('');
 
     const handleChange = useCallback((event, html) => {
         setEditorHtml(event);
-        dispatch(change(form, EDITOR_FIELD_NAME, event));
-        // change(EDITOR_FIELD_NAME, html);
+        change(EDITOR_FIELD_NAME, event);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (

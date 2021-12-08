@@ -27,7 +27,7 @@ export const dataFetchers = {
 };
 
 export const editor = {
-    list: () => 'https://jsonplaceholder.typicode.com/posts',
+    list: () => 'http://localhost:5000/api/campaigns/campaigns',
     edit: () => () => `${APP_API_URL}//`,
-    createPage: () => `${APP_API_URL}//`,
+    createPage: () => `'http://localhost:5000/api/campaigns`,
 };
