@@ -1,5 +1,7 @@
 import { createAction } from 'redux-act';
 import { call, put, takeEvery } from 'redux-saga/effects';
+import { routes } from 'configs/app.routes';
+import history from 'configs/app.history';
 
 import * as api from 'core/api';
 
@@ -12,10 +14,11 @@ export const createPageSuccess = createAction(`${namespace} | create page succes
 export const createPageFail = createAction(`${namespace} | create page fail`, (error) => error);
 
 function* createPageSaga({ payload: { document } }) {
-    const { success, data, error } = yield call(api.createPage.createPage, document);
+    const { success, data, error } = yield call(api.editor.createPage, document);
 
     if (success) {
         yield put(createPageSuccess(data));
+        yield call(history.push, routes.app.homePage);
     } else {
         yield put(createPageFail(error));
     }

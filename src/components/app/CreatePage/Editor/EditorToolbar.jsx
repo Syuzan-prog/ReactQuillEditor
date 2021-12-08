@@ -11,11 +11,11 @@ import Table from './Table';
 
 import { getPDF, getDocx } from './editorFunc';
 
-const EditorToolbar = ({ value, reactQuill }) =>
+const EditorToolbar = ({ value, reactQuillRef, toolbarId }) =>
 
 // console.log(editor)
     (
-        <div id="toolbar">
+        <div id={toolbarId}>
             <span className="ql-formats">
                 <select className="ql-font">
                     <option value="arial" defaultValue="arial">
@@ -94,7 +94,7 @@ const EditorToolbar = ({ value, reactQuill }) =>
                     <RedoIcon />
                 </IconButton>
             </span>
-            <Table editor={reactQuill} />
+            <Table reactQuillRef={reactQuillRef} />
             <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => getPDF(value)}>
                 <PictureAsPdfIcon />
             </IconButton>
@@ -105,6 +105,7 @@ const EditorToolbar = ({ value, reactQuill }) =>
     );
 EditorToolbar.propTypes = {
     value: PropTypes.string,
+    toolbarId: PropTypes.string,
 };
 
 export default EditorToolbar;

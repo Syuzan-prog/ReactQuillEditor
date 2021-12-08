@@ -5,6 +5,7 @@ import { reducer as app } from './modules/init.module';
 import { reducer as account } from './modules/account';
 import { reducer as verification } from './modules/verification';
 import { reducer as notifications } from './modules/notifications.module';
+import { reducer as posts } from './modules/editor';
 
 import { logout } from './modules/auth.module';
 
@@ -13,6 +14,7 @@ const applicationReducer = combineReducers({
     account,
     verification,
     notifications,
+    posts,
     form,
 });
 

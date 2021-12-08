@@ -14,7 +14,7 @@ export const routes = {
     app: '/app',
     _app: {
         dashboard: '/app/dashboard',
-        messages: '/app/messages',
+        homePage: '/app/homePage',
         settings: '/app/settings',
     },
 };

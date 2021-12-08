@@ -14,6 +14,8 @@ import { watchVerification } from './modules/verification';
 
 import { watchFormSubmit } from './modules/formSubmit.module';
 
+import { watchEditor } from './modules/editor';
+
 export default function* rootSaga() {
     yield all([
         fork(watchInit),
@@ -26,5 +28,6 @@ export default function* rootSaga() {
         fork(watchFormSubmit),
         fork(watchAccount),
         fork(watchVerification),
+        fork(watchEditor),
     ]);
 }

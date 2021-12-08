@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import ListItem from '@mui/material/ListItem';
 import WebIcon from '@mui/icons-material/WebOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import SaveIcon from '@mui/icons-material/SaveAltOutlined';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -14,6 +15,16 @@ import { ListWrapper } from './NavList.styles';
 
 const NavList = ({ logout }) => (
     <ListWrapper>
+        <ListItem>
+            <Button
+                activeClassName="Mui-active"
+                component={NavLink}
+                to={routes._app.homePage}
+                startIcon={<HomeOutlinedIcon />}
+            >
+                <Typography variant="h4">Home Page</Typography>
+            </Button>
+        </ListItem>
         <ListItem>
             <Button
                 activeClassName="Mui-active"

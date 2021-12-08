@@ -3,12 +3,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 
-import { TableUtil } from './utils/Table';
+import InsertTable from './utils/Table';
 import usePopup from './utils/usePopup';
 
 import styles from './Table.scss';
 
-const Table = ({ editor }) => {
+const Table = ({ reactQuillRef }) => {
     const tableOptionsRef = useRef();
     const [selection, setSelection] = useState();
     const [showOptions, setShowOptions] = usePopup(tableOptionsRef);
@@ -16,6 +16,7 @@ const Table = ({ editor }) => {
         row: 0,
         column: 0,
     });
+
     const [tableInput, setTableInput] = useState(
         Array.from({ length: 6 }, () =>
             Array.from({ length: 6 }, (v, i) => ({
@@ -24,7 +25,7 @@ const Table = ({ editor }) => {
             }))
         )
     );
-    console.log('...', editor);
+
     useEffect(() => {
         const newTable = Array.from({ length: 6 }, (obj, row) =>
             Array.from({ length: 6 }, (v, col) => ({
@@ -37,17 +38,28 @@ const Table = ({ editor }) => {
         );
         setTableInput(newTable);
     }, [tableData]);
-    const table = new TableUtil();
 
     const handleButtonClick = () => {
         setSelection(editor.current);
         setShowOptions((prev) => !prev);
     };
     const handleInsert = () => {
-        selection && editor.current.focus(editor, selection);
+        const quillRef = reactQuillRef.current.getEditor();
+        let range = quillRef.getSelection(true);
+        let position = range ? range.index : 0;
+        if (!range) {
+            return;
+        }
+        quillRef.insertEmbed(position, "image", {
+            src:
+              "https://images.unsplash.com/photo-1508614999368-9260051292e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNTMxNTJ8MHwxfHNlYXJjaHw1fHxncmFkaWVudHxlbnwwfDB8fHwxNjM1MTU5MDY4&ixlib=rb-1.2.1&q=80&w=1080",
+            caption: "Image caption"
+          });
+        // setEditorHtml(<InsertTable />)
+        // selection && editor.current.focus(editor, selection);
         setTableData({ row: -1, column: -1 });
-        table.insertTable(tableData.row, tableData.column);
         setShowOptions(false);
+        return <InsertTable row={tableData.row} column={tableData.column} />
     };
     return (
         <div ref={tableOptionsRef} style={{ display: 'inline-block', verticalAlign: 'middle' }} className={styles.popupWrapper}>
@@ -65,15 +77,15 @@ const Table = ({ editor }) => {
           )}
                 <div className={styles.tableInput}>
                     {tableInput.map((grp, row) =>
-              grp.map(({ column, bg }) => (
-                  <div
-                      onClick={() => handleInsert()}
-                      onMouseOver={() =>
-                    setTableData({ row: row + 1, column: column + 1 })}
-                      style={{ border: `1px solid ${bg}` }}
-                      className={styles.tableUnit}
-                  />
-              ))
+                        grp.map(({ column, bg }) => (
+                            <div
+                                onClick={() => handleInsert()}
+                                onMouseEnter={() =>
+                                setTableData({ row: row + 1, column: column + 1 })}
+                                style={{ border: `1px solid ${bg}` }}
+                                className={styles.tableUnit}
+                            />
+                        ))
             )}
                 </div>
             </div>

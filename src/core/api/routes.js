@@ -1,10 +1,10 @@
 export const auth = {
-    signin: () => `${APP_API_URL}/auth/signin/`,
+    signin: () => `http://localhost:5000/api/auth/login`,
     signup: () => `${APP_API_URL}/auth/signup/`,
     recoverPassword: () => `${APP_API_URL}/auth/recover_password/`,
     resetPassword: () => `${APP_API_URL}/auth/reset_password/`,
     join: () => `${APP_API_URL}/join_waitlist/`,
-    verify: (token) => `${APP_API_URL}/auth/verify/email/${token}/`,
+    verify: (token) => `http://localhost:5000/api/auth/${token}`,
     verification: {
         meta: () => `${APP_API_URL}/auth/onboarding_step/`,
         requestCode: () => `${APP_API_URL}/auth/send_code/`,
@@ -13,7 +13,7 @@ export const auth = {
 };
 
 export const account = {
-    me: () => `${APP_API_URL}/users/me/`,
+    me: () => `http://localhost:5000/api/auth/auth`,
     changePassword: () => `${APP_API_URL}/users/me/change_password/`,
     changeRecoveryEmail: () => `${APP_API_URL}/users/me/set_recovery_email/`,
     verifyRecoveryEmail: () => `${APP_API_URL}/users/me/verify_recovery_email/`,
@@ -27,5 +27,7 @@ export const dataFetchers = {
 };
 
 export const editor = {
+    list: () => 'https://jsonplaceholder.typicode.com/posts',
+    edit: () => () => `${APP_API_URL}//`,
     createPage: () => `${APP_API_URL}//`,
 };

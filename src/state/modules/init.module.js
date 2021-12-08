@@ -29,7 +29,9 @@ import {
     accountUpdateSuccess,
 } from './account';
 
-
+import {
+    fetchPosts,
+} from './editor';
 
 const namespace = 'app';
 
@@ -63,14 +65,13 @@ function* initSaga() {
 
     if (invalid) {
         // yield put(logout());
+        yield put(fetchPosts(20, 0, true)); // jnjel
         yield put(ready());
     } else if (failed) {
         yield put(ready());
         history.replace({ state: { errorType: ROUTE_CONNECTION_ERROR } });
     } else {
-        yield put(fetchMessages(20, 0, true));
-        yield put(fetchParticipants(20, 0, true));
-        yield put(fetchUnreadMessagesCount());
+        yield put(fetchPosts(20, 0, true));
 
         yield put(ready());
         if (isLandingPath(history.location.pathname)) {

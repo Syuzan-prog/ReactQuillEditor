@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
-import { change, Field } from 'redux-form';
+import { change } from 'redux-form';
 
 import Button from 'components/common/Button';
 import { EDITOR_FIELD_NAME } from 'constants/editor.constants';

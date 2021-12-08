@@ -1,5 +1,13 @@
 import { Quill } from 'react-quill';
 
+const Font = Quill.import('formats/font');
+Font.whitelist = ['arial', 'comic-sans', 'courier-new', 'georgia', 'helvetica', 'lucida'];
+Quill.register(Font, true);
+
+const fontSizeStyle = Quill.import('attributors/style/size');
+fontSizeStyle.whitelist = ['10px', '12px', '14px', '16px', '20px', '24px', '36px'];
+Quill.register(fontSizeStyle, true);
+
 const Parchment = Quill.import('parchment');
 const lineHeightConfig = {
     scope: Parchment.Scope.INLINE,
@@ -29,9 +37,9 @@ function redoChange() {
     this.quill.history.redo();
 }
 
-export const modules = {
+export const modules = (props) => ({
     toolbar: {
-        container: '#toolbar',
+        container: `#${props}`,
         handlers: {
             undo: undoChange,
             redo: redoChange,
@@ -43,4 +51,4 @@ export const modules = {
         userOnly: true,
     },
     // autoformat: true,
-};
+});

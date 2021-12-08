@@ -49,9 +49,7 @@ const Sidebar = ({ avatarUrl, fullName, uploadAvatar }) => {
                 </IconButton>
             </div>
             <NavList />
-            <Link to={routes._app.dashboard} className="logo-container">
-
-            </Link>
+            <Link to={routes._app.dashboard} className="logo-container" />
         </DrawerWrapper>
     );
 };
