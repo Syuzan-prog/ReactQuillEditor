@@ -11,10 +11,10 @@ import Table from './Table';
 
 import { getPDF, getDocx } from './editorFunc';
 
-const EditorToolbar = ({ value, reactQuillRef, toolbarId }) =>
+const EditorToolbar = ({ value, reactQuillRef, toolbarId }) =>{
 
-// console.log(editor)
-    (
+console.log('posts, ', value)
+   return (
         <div id={toolbarId}>
             <span className="ql-formats">
                 <select className="ql-font">
@@ -102,9 +102,9 @@ const EditorToolbar = ({ value, reactQuillRef, toolbarId }) =>
                 <InsertDriveFileIcon />
             </IconButton>
         </div>
-    );
+    )};
 EditorToolbar.propTypes = {
-    value: PropTypes.string,
+    // value: PropTypes.string,
     toolbarId: PropTypes.string,
 };
 

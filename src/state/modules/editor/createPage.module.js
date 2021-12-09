@@ -15,7 +15,7 @@ export const createPageFail = createAction(`${namespace} | create page fail`, (e
 
 function* createPageSaga({ payload: { document } }) {
     const { success, data, error } = yield call(api.editor.createPage, document);
-
+console.log("modul", document)
     if (success) {
         yield put(createPageSuccess(data));
         yield call(history.push, routes.app.homePage);

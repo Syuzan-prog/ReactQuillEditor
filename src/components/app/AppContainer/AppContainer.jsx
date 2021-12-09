@@ -13,7 +13,7 @@ import { routes } from 'configs/app.routes';
 
 import styles from './AppContainer.scss';
 import HomePage from '../HomePage';
-import Edit from '../CreatePage/Editor/Edit';
+import Edit from 'components/common/Editor/Edit';
 
 const AppContainer = () => (
     <div className={styles.container}>

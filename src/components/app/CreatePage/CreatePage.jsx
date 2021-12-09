@@ -1,24 +1,24 @@
 import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
+import { Field, change } from 'redux-form';
 
 import Button from 'components/common/Button';
 import { EDITOR_FIELD_NAME } from 'constants/editor.constants';
-import Editor from './Editor';
+import Editor from 'components/common/Editor';
 
-import { CreatePageWrapper } from './CreatePage.styles';
+import { CreatePageFormWrapper } from './CreatePage.styles';
 
-const CreatePage = ({ change }) => {
+const CreatePage = ({ dispatch, form,  handleSubmit }) => {
     const [editorHtml, setEditorHtml] = useState('');
 
     const handleChange = useCallback((event, html) => {
         setEditorHtml(event);
-        change(EDITOR_FIELD_NAME, event);
+        dispatch(change(form, EDITOR_FIELD_NAME, event));
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
     return (
-        <CreatePageWrapper className="container">
+        <CreatePageFormWrapper onSubmit={handleSubmit} className="container">
             <div>
-                <Editor onChange={handleChange} value={editorHtml} id="editor" name={EDITOR_FIELD_NAME} className="editor" />
+                <Field editorHtml={editorHtml} handleChange={handleChange} component={Editor} id="editor" name={EDITOR_FIELD_NAME} className="editor" />
                 <Button
                     type="submit"
                     color="primary"
@@ -27,7 +27,7 @@ const CreatePage = ({ change }) => {
                     Create Page
                 </Button>
             </div>
-        </CreatePageWrapper>
+        </CreatePageFormWrapper>
     );
 };
 

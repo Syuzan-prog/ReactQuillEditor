@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 
-export const CreatePageWrapper = styled('form')(
+export const CreatePageFormWrapper = styled('form')(
     ({ theme }) => `
 
         display: flex;
@@ -17,7 +17,7 @@ export const CreatePageWrapper = styled('form')(
             &>:last-child {
                 position: relative;
                 z-index: 0;
-                height:  297mm;
+                height:  97mm;
                 background: white;
             }
         } `
