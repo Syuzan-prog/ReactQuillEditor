@@ -7,7 +7,9 @@ import Button from '@mui/material/Button';
 
 import { routes } from 'configs/app.routes';
 
-const HomePage = ({ posts }) => (
+const HomePage = ({ posts }) => {
+    console.log("posts", posts)
+return(
     <div className="HomePage">
         <div className="container">
             <div className="row">
@@ -26,17 +28,14 @@ const HomePage = ({ posts }) => (
                 {posts.map((item) => (
                     <div className="post__list" key={item.id}>
                         <Typography variant="h5" color="primary">{item.title}</Typography>
-
-                        <div className="post__description" dangerouslySetInnerHTML={{ __html: item.description }} />
-                        <div className="post__description" dangerouslySetInnerHTML={{ __html: item.information }} />
+                        <div className="post__description" dangerouslySetInnerHTML={{ __html: item.editor }} />
                         <NavLink to={`/Edit/${item.id}`}> Edit </NavLink>
-
                     </div>
                     ))}
             </div>
         </div>
     </div>
-);
+)};
 
 HomePage.propTypes = {
     posts: PropTypes.array,

@@ -6,7 +6,7 @@ export const auth = {
     join: () => `${APP_API_URL}/join_waitlist/`,
     verify: (token) => `http://localhost:5000/api/auth/${token}`,
     verification: {
-        meta: () => `${APP_API_URL}/auth/onboarding_step/`,
+        meta: () => `http://localhost:5000/api/auth/auth`,
         requestCode: () => `${APP_API_URL}/auth/send_code/`,
         sendCode: () => `${APP_API_URL}/auth/verify_email/`,
     },

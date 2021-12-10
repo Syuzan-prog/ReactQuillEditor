@@ -15,10 +15,9 @@ export const saveDocumentFail = createAction(`${namespace} | save document fail`
 
 function* saveDocumentSaga({ payload: document }) {
     const { success, data, error } = yield call(api.editor.saveDocument, document );
-    console.log(' success',  data)
     if (success) {
         yield put(saveDocumentSuccess(data));
-        yield call(history.push, routes.app.homePage);
+        yield call(history.push, routes._app.homePage);
     } else {
         yield put(saveDocumentFail(error));
     }
