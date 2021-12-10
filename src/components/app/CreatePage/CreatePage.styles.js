@@ -17,7 +17,7 @@ export const CreatePageFormWrapper = styled('form')(
             &>:last-child {
                 position: relative;
                 z-index: 0;
-                height:  97mm;
+                height:  20mm;
                 background: white;
             }
         } `

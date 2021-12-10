@@ -2,7 +2,7 @@ import { postApiRequest, getApiRequest } from './_tools';
 
 import { editor as routes } from './routes';
 
-export const createPage = (tag) => postApiRequest(routes.createPage(), { tag });
+export const saveDocument = (tag) => postApiRequest(routes.saveDocument(), tag);
 
 export const edit = (tag) => postApiRequest(routes.edit(), { tag });
 

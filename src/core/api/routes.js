@@ -29,5 +29,5 @@ export const dataFetchers = {
 export const editor = {
     list: () => 'http://localhost:5000/api/campaigns/campaigns',
     edit: () => () => `${APP_API_URL}//`,
-    createPage: () => `'http://localhost:5000/api/campaigns`,
+    saveDocument: () => `http://localhost:5000/api/campaigns/`,
 };

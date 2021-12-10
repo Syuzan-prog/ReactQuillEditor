@@ -34,6 +34,7 @@ export function* signinUser(token, persistToken) {
 
 function* signinSaga({ payload: { email, password, persistToken } }) {
     const { success, data, error } = yield call(api.auth.signin, email, password);
+
     yield call(history.push, routes.app);
     if (success) {
         const { access } = data;

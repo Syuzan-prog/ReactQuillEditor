@@ -54,6 +54,7 @@ function* fetchPostsSaga({ payload: { limit, offset, resetState } }) {
         limit, offset === null && defaultOffset
     );
 
+    console.log('success', data)
     if (success) {
 
         const processedResults = camelizeKeys(data);

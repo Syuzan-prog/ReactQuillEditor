@@ -13,7 +13,6 @@ import { getPDF, getDocx } from './editorFunc';
 
 const EditorToolbar = ({ value, reactQuillRef, toolbarId }) =>{
 
-console.log('posts, ', value)
    return (
         <div id={toolbarId}>
             <span className="ql-formats">

@@ -1,14 +1,14 @@
 import { reduxForm } from 'redux-form';
 
 import { EDITOR_FIELD_NAME } from 'constants/editor.constants';
-import { createPage, createPageSuccess, createPageFail } from 'state/modules/editor/createPage.module';
+import { saveDocument, saveDocumentSuccess, saveDocumentFail } from 'state/modules/editor/saveDocument.module';
 import { onSubmitActions } from 'state/modules/formSubmit.module';
 
-import CreatePage from './CreatePage';
+import createPage from './CreatePage';
 
 const form = {
     form: EDITOR_FIELD_NAME,
-    onSubmit: onSubmitActions(createPage, createPageSuccess, createPageFail),
+    onSubmit: onSubmitActions(saveDocument, saveDocumentSuccess, saveDocumentFail),
 };
 
-export default reduxForm(form)(CreatePage);
+export default reduxForm(form)(createPage);
