@@ -6,7 +6,10 @@ export const getPostsIsLoading = createSelector(
     getPostsState,
     (state) => state.isLoading
 );
-
+export const getPostUpdateInitialState = createSelector(
+    getPostsState,
+    (state) => state.post
+);
 export const getPostsIsLoaded = createSelector(
     getPostsState,
     (state) => state.isLoaded

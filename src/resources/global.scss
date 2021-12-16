@@ -91,9 +91,14 @@ body {
     cursor: pointer;
 }
 
+// a {
+//     text-decoration: none;
+//     color: #008b91;
+// }
+
 .ql-snow .ql-picker.ql-lineheight{
     width: 58px;
-  }
+}
   
   .ql-snow .ql-picker.ql-lineheight .ql-picker-item[data-value='1.0']::before {content: '1.0';}
   .ql-snow .ql-picker.ql-lineheight .ql-picker-label[data-value='1.0']::before {content: '1.0' !important;}

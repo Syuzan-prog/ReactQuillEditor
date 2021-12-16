@@ -13,7 +13,7 @@ const CreatePage = ({ change, handleSubmit }) => {
 
     const handleChange = useCallback((event, html) => {
         setEditorHtml(event);
-        change( EDITOR_FIELD_NAME, event );
+        change(EDITOR_FIELD_NAME, event);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
@@ -34,8 +34,7 @@ const CreatePage = ({ change, handleSubmit }) => {
 
 CreatePage.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
-    dispatch: PropTypes.func.isRequired,
-    form: PropTypes.string.isRequired,
+    change: PropTypes.func.isRequired,
 };
 
 export default CreatePage;

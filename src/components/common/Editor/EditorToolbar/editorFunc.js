@@ -4,7 +4,7 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 
 export const getPDF = async (value) => {
-    
+
     if (value) {
         const el = document.getElementById('editor');
 
@@ -19,7 +19,7 @@ export const getPDF = async (value) => {
         // var doc = new jsPDF('landscape') //horizonakan paper
         // doc.internal.getNumberOfPages() // qani paper ka
         // doc.autoTable
-        // doc.addPage() // nor paper i avelacum 
+        // doc.addPage() // nor paper i avelacum
         // doc.deletePage(1) // jnjum e 1 papery
         // doc.text(20, 20, 'Do you like that?')
 

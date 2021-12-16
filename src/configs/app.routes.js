@@ -16,5 +16,6 @@ export const routes = {
         dashboard: '/app/dashboard',
         homePage: '/app/homePage',
         settings: '/app/settings',
+        edit: '/app/edit/:id',
     },
 };

@@ -1,11 +1,19 @@
 import { connect } from 'react-redux';
 
-import { getPosts } from 'state/selectors/editor.selectors';
+import { fetchPosts } from 'state/modules/editor';
+import { getPosts, getPostsIsLoading, getPostsHasMore} from 'state/selectors/editor.selectors';
 
 import HomePage from './HomePage';
 
 const mapStateToProps = (state) => ({
     posts: getPosts(state),
+    isLoading: getPostsIsLoading(state),
+    hasMore: getPostsHasMore(state),
 });
 
-export default connect(mapStateToProps, null)(HomePage);
+const mapDispatchToProps = {
+    fetchPosts,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+

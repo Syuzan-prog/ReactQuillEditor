@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
 
@@ -11,7 +11,7 @@ export const Editor = ({ editorHtml, meta, handleChange, id, input, className, .
     const error = useMemo(() => meta && isInvalid(meta) && meta.error, [meta]);
     return (
         <div className={className}>
-            <EditorToolbar value={editorHtml}  toolbarId={EDITOR_FIELD_ID_NAME} />
+            <EditorToolbar value={editorHtml} toolbarId={EDITOR_FIELD_ID_NAME} />
             <ReactQuill
                 // {...input}
                 value={editorHtml}
@@ -22,7 +22,7 @@ export const Editor = ({ editorHtml, meta, handleChange, id, input, className, .
                 modules={modules(EDITOR_FIELD_ID_NAME)}
                 placeholder="Write something awesome..."
             />
-             { error && <div className="errors"> Error</div> }
+            { error && <div className="errors"> Error</div> }
         </div>
     );
 };
@@ -43,6 +43,8 @@ Editor.propTypes = {
         submitting: PropTypes.bool,
         touched: PropTypes.bool,
     }),
+    editorHtml: PropTypes.string,
+    handleChange: PropTypes.func,
     className: PropTypes.string,
 };
 export default Editor;

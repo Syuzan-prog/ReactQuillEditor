@@ -45,21 +45,21 @@ const Table = ({ reactQuillRef }) => {
     };
     const handleInsert = () => {
         const quillRef = reactQuillRef.current.getEditor();
-        let range = quillRef.getSelection(true);
-        let position = range ? range.index : 0;
+        const range = quillRef.getSelection(true);
+        const position = range ? range.index : 0;
         if (!range) {
             return;
         }
-        quillRef.insertEmbed(position, "image", {
+        quillRef.insertEmbed(position, 'image', {
             src:
-              "https://images.unsplash.com/photo-1508614999368-9260051292e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNTMxNTJ8MHwxfHNlYXJjaHw1fHxncmFkaWVudHxlbnwwfDB8fHwxNjM1MTU5MDY4&ixlib=rb-1.2.1&q=80&w=1080",
-            caption: "Image caption"
-          });
+              'https://images.unsplash.com/photo-1508614999368-9260051292e5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNTMxNTJ8MHwxfHNlYXJjaHw1fHxncmFkaWVudHxlbnwwfDB8fHwxNjM1MTU5MDY4&ixlib=rb-1.2.1&q=80&w=1080',
+            caption: 'Image caption',
+        });
         // setEditorHtml(<InsertTable />)
         // selection && editor.current.focus(editor, selection);
         setTableData({ row: -1, column: -1 });
         setShowOptions(false);
-        return <InsertTable row={tableData.row} column={tableData.column} />
+        return <InsertTable row={tableData.row} column={tableData.column} />;
     };
     return (
         <div ref={tableOptionsRef} style={{ display: 'inline-block', verticalAlign: 'middle' }} className={styles.popupWrapper}>

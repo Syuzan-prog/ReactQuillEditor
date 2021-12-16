@@ -11,9 +11,10 @@ import NotificationController from 'components/app/NotificationController';
 
 import { routes } from 'configs/app.routes';
 
-import styles from './AppContainer.scss';
+import Edit from '../HomePage/Edit';
 import HomePage from '../HomePage';
-import Edit from 'components/common/Editor/Edit';
+
+import styles from './AppContainer.scss';
 
 const AppContainer = () => (
     <div className={styles.container}>
@@ -25,7 +26,7 @@ const AppContainer = () => (
                         <Switch>
                             <Route path={routes._app.dashboard} component={DashboardPage} />
                             <Route path={routes._app.homePage} component={HomePage} />
-                            <Route path="/Edit/:postID" component={Edit} />
+                            <Route path={routes._app.edit} component={Edit} />
                             <Redirect exact from={routes.app} to={routes._app.dashboard} />
                         </Switch>
                     </div>
