@@ -1,0 +1,6 @@
+{
+    "serverPort" : 5000,
+    "dbUrl": "mongodb+srv://Syuzan:554487s@cloud.vf8he.mongodb.net/cloud?retryWrites=true&w=majority",
+    "secretKey": "mern-secket-key",
+    "filePath": "C:\\Users\\syuza\\Desktop\\react\\mern\\server\\files"
+}

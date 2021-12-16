@@ -1,0 +1,41 @@
+
+.block {
+
+    .title {
+        text-align: center;
+    }
+
+    .text {
+        margin: 5px 0 20px;
+        text-align: center;
+    }
+
+    .linkSignup {
+        margin-top: 32px ;
+    }
+ 
+    a {
+        margin-left: 5px;
+        color: #008B91;
+;
+        text-decoration: none;
+    }
+
+    .recoverPasswordLink {
+        margin-left: 0;
+        margin-bottom: 8px;
+        float: right;
+    }
+
+    .emailInput {
+        margin-bottom: 8px;
+    }
+
+    .checkbox {
+        margin: 0 0 10px;
+    }
+
+    .closeButton {
+        margin: 0;
+    }
+}

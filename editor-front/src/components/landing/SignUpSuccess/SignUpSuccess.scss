@@ -1,0 +1,21 @@
+
+.block {
+    width: 480px;
+
+    .title {
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    .linkSignin {
+        text-align: center;
+        margin-top: 16px;
+
+        a {
+            margin-left: 5px;
+            color: #008B91;
+;
+            text-decoration: none;
+        }
+    }
+}
