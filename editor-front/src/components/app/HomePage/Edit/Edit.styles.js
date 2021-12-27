@@ -17,7 +17,7 @@ export const EditPostFormWrapper = styled('form')(
             &>:last-child {
                 position: relative;
                 z-index: 0;
-                height:  97mm;
+
                 background: white;
             }
         } `

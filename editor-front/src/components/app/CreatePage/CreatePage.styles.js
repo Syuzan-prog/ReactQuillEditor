@@ -6,7 +6,7 @@ export const CreatePageFormWrapper = styled('form')(
         display: flex;
         justify-content: center;
         .editor {
-            width: 210mm;
+
             &>:first-of-type {
                 position: sticky;
                 top: 0px;
@@ -17,8 +17,6 @@ export const CreatePageFormWrapper = styled('form')(
             &>:last-child {
                 position: relative;
                 z-index: 0;
-                height:  97mm;
-                background: white;
             }
         } `
 );

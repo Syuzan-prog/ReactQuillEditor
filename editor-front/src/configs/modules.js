@@ -1,11 +1,16 @@
 import { Quill } from 'react-quill';
+import ImageResize from "quill-image-resize-module-react";
+import ImageCompress from "quill-image-compress";
+
+Quill.register("modules/ImageResize", ImageResize);
+Quill.register("modules/imageCompress", ImageCompress);
 
 const Font = Quill.import('formats/font');
 Font.whitelist = ['arial', 'comic-sans', 'courier-new', 'georgia', 'helvetica', 'lucida'];
 Quill.register(Font, true);
 
 const fontSizeStyle = Quill.import('attributors/style/size');
-fontSizeStyle.whitelist = ['10px', '12px', '14px', '16px', '20px', '24px', '36px'];
+fontSizeStyle.whitelist = ['1px','2px','3px','4px','5px','6px','7px','8px','9px','10px', '12px', '14px', '16px', '20px', '24px', '36px','50px', '68px','100'];
 Quill.register(fontSizeStyle, true);
 
 const Parchment = Quill.import('parchment');
@@ -50,5 +55,15 @@ export const modules = (props) => ({
         maxStack: 100,
         userOnly: true,
     },
-    // autoformat: true,
+    ImageResize: {
+        parchment: Quill.import("parchment"),
+        modules: ["Resize", "DisplaySize", "Toolbar"]
+    },
+    imageCompress: {
+        quality: 0.7, // default
+        maxWidth: 1000, // default
+        maxHeight: 1000, // default
+        imageType: "image/jpeg", // default
+        debug: true // default
+    },
 });

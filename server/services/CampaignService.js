@@ -12,23 +12,28 @@ class CampaignService {
     }
     async getOne(id) {
         if (!id) {
-            throw new Error('не указан ID')
+            throw new Error('not specified ID')
         }
         const campaign = await Campaign.findById(id);
         return campaign;
     }
 
     async update(campaign) {
-        if (!campaign._id) {
-            throw new Error('не указан ID')
+        if (!campaign.id) {
+            throw new Error('not specified ID')
         }
-        const updatedCampaign = await Campaign.findByIdAndUpdate(campaign._id, campaign, {new: true})
+
+        const updatedCampaign = await Campaign.findByIdAndUpdate(campaign.id, {
+            $set:{
+                editor: campaign.editor
+            }
+        }, {new: true})
         return updatedCampaign;
     }
 
     async delete(id) {
             if (!id) {
-                throw new Error('не указан ID')
+                throw new Error('not specified ID')
             }
             const campaign = await Campaign.findByIdAndDelete(id);
             return campaignost;

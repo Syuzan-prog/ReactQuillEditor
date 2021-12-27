@@ -44,8 +44,8 @@ export const getPostsOffset = createSelector(
     (posts) => posts.length
 );
 
-export const getPostsById = createSelector(
+export const getPostId = createSelector(
     getPostsEntities,
     getEntityIdFromProps,
-    (posts, id) => posts[id]
+    (posts, editPostID) => posts[editPostID]
 );

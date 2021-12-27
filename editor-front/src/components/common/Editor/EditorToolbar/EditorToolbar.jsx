@@ -7,12 +7,14 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import RedoIcon from '@mui/icons-material/Redo';
 import UndoIcon from '@mui/icons-material/Undo';
 
+import { Button } from '@mui/material';
 import Table from './Table';
 
-import { getPDF, getDocx } from './editorFunc';
+import { handleExportPdfimg, handleExportPdfFile, handleExportDocx } from './editorFunc';
+import Popover from '../../Popover';
 
-const EditorToolbar = ({ value, reactQuillRef, toolbarId }) => (
-    <div id={toolbarId}>
+const EditorToolbar = ({ value, editorRef, toolbarId }) => (
+    <div id={toolbarId} style={{ marginBottom: '20px' }}>
         <span className="ql-formats">
             <select className="ql-font">
                 <option value="arial" defaultValue="arial">
@@ -25,6 +27,14 @@ const EditorToolbar = ({ value, reactQuillRef, toolbarId }) => (
                 <option value="lucida">Lucida</option>
             </select>
             <select className="ql-size" defaultValue="14px">
+                <option value="1px">1</option>
+                <option value="2px">2</option>
+                <option value="3px">3</option>
+                <option value="5px">4</option>
+                <option value="5px">5</option>
+                <option value="6px">6</option>
+                <option value="7px">7</option>
+                <option value="8px">8</option>
                 <option value="10px">10</option>
                 <option value="12px">12</option>
                 <option value="14px">14</option>
@@ -32,6 +42,9 @@ const EditorToolbar = ({ value, reactQuillRef, toolbarId }) => (
                 <option value="20px">20</option>
                 <option value="24px">24</option>
                 <option value="36px">36</option>
+                <option value="50px">50</option>
+                <option value="68px">68</option>
+                <option value="100px">100</option>
             </select>
             <select className="ql-lineheight custom-control" defaultValue="1.5">
                 <option value="1.0">1.0</option>
@@ -91,17 +104,19 @@ const EditorToolbar = ({ value, reactQuillRef, toolbarId }) => (
                 <RedoIcon />
             </IconButton>
         </span>
-        <Table reactQuillRef={reactQuillRef} />
-        <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => getPDF(value)}>
-            <PictureAsPdfIcon />
-        </IconButton>
-        <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => getDocx(value)}>
+        <Table />
+        <Popover>
+            <Button onClick={() => handleExportPdfimg(value)}>img</Button>
+            <Button onClick={() => handleExportPdfFile(editorRef)}>file</Button>
+        </Popover>
+        <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => handleExportDocx(value)}>
             <InsertDriveFileIcon />
         </IconButton>
     </div>
 );
 EditorToolbar.propTypes = {
     value: PropTypes.string,
+    editorRef: PropTypes.object, // eslint-disable-line react/forbid-prop-types
     toolbarId: PropTypes.string,
 };
 

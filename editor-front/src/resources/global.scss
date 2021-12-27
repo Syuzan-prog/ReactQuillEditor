@@ -122,3 +122,19 @@ body {
   .ql-snow .ql-picker.ql-lineheight .ql-picker-label[data-value='4.0']::before {content: '4.0' !important;}
   .ql-snow .ql-picker.ql-lineheight .ql-picker-item[data-value='5.0']::before {content: '5.0';}
   .ql-snow .ql-picker.ql-lineheight .ql-picker-label[data-value='5.0']::before {content: '5.0' !important;}
+
+  .ql-container {
+      width: 210mm;
+      min-height: 197mm;
+      background: white;
+      margin: 0px auto
+  }
+
+  .kvfysmfp {
+      overflow: visible !important;
+  }
+
+  .zoom {
+    transform-origin: center top;
+  }
+

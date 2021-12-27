@@ -1,7 +1,7 @@
 import { reduxForm } from 'redux-form';
 
 import { EDITOR_FIELD_NAME } from 'constants/editor.constants';
-import { saveDocument, saveDocumentSuccess, saveDocumentFail } from 'state/modules/editor/saveDocument.module';
+import { saveDocument, saveDocumentSuccess, saveDocumentFail } from 'state/modules/editor/document.create.module';
 import { onSubmitActions } from 'state/modules/formSubmit.module';
 
 import createPage from './CreatePage';

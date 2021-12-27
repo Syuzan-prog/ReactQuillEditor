@@ -4,52 +4,39 @@ import { call, put, select, takeEvery } from 'redux-saga/effects';
 
 import { routes } from 'configs/app.routes';
 import history from 'configs/app.history';
-// import {getEntityIdFromProps} from '../../selectors/editor.selectors'
-
 import * as api from 'core/api';
+import { getPostUpdateInitialState } from '../../selectors/editor.selectors';
 
 const namespace = 'edit document';
 
 export const editDocument = createAction(
-    `${namespace} | edit document`, 
-    (document) => ({document}));
+    `${namespace} | edit document`,
+    (document) => ({ document }));
 
 export const editDocumentSuccess = createAction(
     `${namespace} | edit document success`,
-     (document, id) => ({document, id}));
+    (id, document) => ({ id, document }));
 
 export const editDocumentFail = createAction(
-    `${namespace} | edit document fail`, 
-    (error, id) => ({error, id}));
+    `${namespace} | edit document fail`,
+    (error, id) => ({ error, id }));
 
 export const reducer = {
-    [editDocument.getType()]: (state, { id }) => ({
-        ...state,
-        entities: {
-            ...state.entities,
-           [id]: { ...state.entities[id] },
-        },
-    }),
     [editDocumentSuccess.getType()]: (state, { id, document }) => ({
         ...state,
-            entities: {
-            ...state.entities,
-            [id]: { ...state.entities[id], currentBucket: document },
-        },
-    }),
-    [editDocumentFail.getType()]: (state, { id }) => ({
-        ...state,
         entities: {
             ...state.entities,
-            [id]: { ...state.entities[id] },
+            [id]: { ...state.entities[id], document },
         },
     }),
-};    
+};
 
-function* editDocumentSaga({ payload: body }) {
-    // const { success, error } = yield call(api.editor.editDocument, decamelizeKeys(body));
-    // const postId = yield select(getEntityIdFromProps);
-    // console.log('postId', postId)
+function* editDocumentSaga({ payload: update }) {
+    const post = yield select(getPostUpdateInitialState);
+    const { document } = update;
+    const { id } = post;
+    const { success, error } = yield call(api.editor.editDocument, id, decamelizeKeys(document));
+
     if (success) {
         yield put(editDocumentSuccess(id, document));
         yield call(history.push, routes._app.homePage);

@@ -17,7 +17,6 @@ app.use(express.json())
 app.use("/api/auth", authRouter)
 app.use("/api/posts", campaignRouter)
 app.use("/api/files", fileRouter)
-app.use("/api/posts", postsRouter)
 
 
 

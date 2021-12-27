@@ -11,7 +11,7 @@ import { CreatePageFormWrapper } from './CreatePage.styles';
 const CreatePage = ({ change, handleSubmit }) => {
     const [editorHtml, setEditorHtml] = useState('');
 
-    const handleChange = useCallback((event, html) => {
+    const handleChange = useCallback((event) => {
         setEditorHtml(event);
         change(EDITOR_FIELD_NAME, event);
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -19,14 +19,14 @@ const CreatePage = ({ change, handleSubmit }) => {
     return (
         <CreatePageFormWrapper onSubmit={handleSubmit} className="container">
             <div>
-                <Field editorHtml={editorHtml} handleChange={handleChange} component={Editor} id="editor" name={EDITOR_FIELD_NAME} className="editor" />
                 <Button
                     type="submit"
                     color="primary"
                     variant="contained"
                 >
-                    Create Page
+                    Save
                 </Button>
+                <Field editorHtml={editorHtml} handleChange={handleChange} component={Editor} id="editor" name={EDITOR_FIELD_NAME} className="editor" />
             </div>
         </CreatePageFormWrapper>
     );
