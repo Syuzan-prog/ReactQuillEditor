@@ -64,7 +64,7 @@ const HomePage = ({ posts, fetchPosts, deleteDocument, isLoading, hasMore }) => 
                                     <Button onClick={handleDelete}>Delite</Button>
                                 </div>
                             </ListItem>
-                                ))}
+                        ))}
                     </List>
                     {(!isLoading && !posts.length) && 'no Result'}
                 </ScrollActionContainer>

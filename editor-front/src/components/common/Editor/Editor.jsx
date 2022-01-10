@@ -1,36 +1,52 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
+import { Resizable } from 're-resizable';
 import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
-import { PDFExport } from '@progress/kendo-react-pdf';
 
 import isInvalid from 'core/utils/isInvalid';
 import { modules } from 'configs/modules';
 import { EDITOR_FIELD_ID_NAME } from 'constants/editor.constants';
 import EditorToolbar from './EditorToolbar';
 import EditorZoom from './EditorZoom';
+import EditorSlider from './EditorSlider/EditorSlider';
 
-export const Editor = ({ editorHtml, meta, handleChange, id, input, className, ...props }) => {
+import { EditorWrapper } from './Editor.styles';
+
+export const Editor = ({ editorHtml, meta, handleChange, id, className, ...props }) => {
     const error = useMemo(() => meta && isInvalid(meta) && meta.error, [meta]);
     const editorRef = useRef();
-
+    const [widthValue, setWidthValue] = useState(700);
     return (
         <>
             <EditorZoom editorRef={editorRef}>
                 <div className={className}>
                     <EditorToolbar value={editorHtml} toolbarId={EDITOR_FIELD_ID_NAME} editorRef={editorRef} />
-                    <PDFExport>
-                        <div ref={editorRef} className="zoom">
-                            <ReactQuill
-                            // {...input}
-                                value={editorHtml}
-                                onChange={handleChange}
-                                {...props}
-                                id={id}
-                                theme="snow"
-                                modules={modules(EDITOR_FIELD_ID_NAME)}
-                            />
+                    <EditorWrapper>
+                        <div ref={editorRef} className="editor-zoom">
+                            <EditorSlider widthValue={widthValue} />
+                            <div style={{ width: '210mm', background: 'white', display: 'flex', justifyContent: 'center' }}>
+                                <Resizable
+                                    enable={{ right: true, left: true }}
+                                    minWidth="500px"
+                                    size={{ width: widthValue }}
+                                    bounds="parent"
+                                    onResizeStop={(e, direction, ref, d) => {
+                                        setWidthValue(widthValue + d.width);
+                                    }}
+                                >
+                                    <ReactQuill
+                                        value={editorHtml}
+                                        onChange={handleChange}
+                                        {...props}
+                                        id={id}
+                                        theme="snow"
+                                        modules={modules(EDITOR_FIELD_ID_NAME)}
+                                    />
+                                </Resizable>
+                            </div>
+
                         </div>
-                    </PDFExport>
+                    </EditorWrapper>
                     { error && <div className="errors"> Error</div> }
                 </div>
             </EditorZoom>
@@ -40,13 +56,6 @@ export const Editor = ({ editorHtml, meta, handleChange, id, input, className, .
 
 Editor.propTypes = {
     id: PropTypes.string,
-    input: PropTypes.shape({
-        name: PropTypes.string,
-        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.arrayOf(PropTypes.string)]),
-        onFocus: PropTypes.func,
-        onChange: PropTypes.func,
-        onBlur: PropTypes.func,
-    }),
     meta: PropTypes.shape({
         error: PropTypes.node,
         invalid: PropTypes.bool,

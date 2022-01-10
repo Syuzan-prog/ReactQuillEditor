@@ -4,16 +4,13 @@ import Drawer from '@mui/material/Drawer';
 
 export const DrawerWrapper = styled(Drawer)(
     ({ theme }) => `
+        width: auto;
+
         .avatar-container {
             position: relative;
             display: flex;
             justify-content: center;
             margin-top: ${theme.spacing(3)};
-
-            .MuiAvatar-root {
-                width: 108px;
-                height: 108px;
-            }
 
             .MuiIconButton-root {
                 position: absolute;
@@ -25,11 +22,6 @@ export const DrawerWrapper = styled(Drawer)(
                 box-shadow: ${theme.colors.shadows.primary};
             }
         }
-        
-        .logo-container {
-            margin-bottom: 36px;
-            margin-top: auto;
-            text-align: center;
-        }
+
     `
 );

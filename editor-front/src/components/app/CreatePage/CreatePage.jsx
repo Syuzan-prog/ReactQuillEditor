@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 
 import Button from 'components/common/Button';
-import { EDITOR_FIELD_NAME } from 'constants/editor.constants';
 import Editor from 'components/common/Editor';
+import { EDITOR_FIELD_NAME } from 'constants/editor.constants';
 
 import { CreatePageFormWrapper } from './CreatePage.styles';
 

@@ -33,9 +33,9 @@ const Sidebar = ({ avatarUrl, fullName, uploadAvatar }) => {
     return (
         <DrawerWrapper
             variant="permanent"
-            anchor="left"
+            anchor="top"
         >
-            <div className="avatar-container">
+            {/* <div className="avatar-container">
                 <input
                     ref={inputRef}
                     type="file"
@@ -47,9 +47,8 @@ const Sidebar = ({ avatarUrl, fullName, uploadAvatar }) => {
                 <IconButton onClick={handleUploadClick}>
                     <FileUploadOutlinedIcon fontSize="small" />
                 </IconButton>
-            </div>
+            </div> */}
             <NavList />
-            <Link to={routes._app.dashboard} className="logo-container" />
         </DrawerWrapper>
     );
 };

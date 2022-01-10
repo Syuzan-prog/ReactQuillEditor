@@ -5,8 +5,8 @@ import List from '@mui/material/List';
 export const ListWrapper = styled(List)(
     ({ theme }) => `
     &.MuiList-root {
-        margin-top: ${theme.spacing(3)};
-
+        display: flex;
+        
         .MuiListItem-root {
             padding: ${theme.spacing(0.25)};
             margin-bottom: ${theme.spacing(1)};

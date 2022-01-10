@@ -77,6 +77,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../public/index.html'),
             intercomAppId: process.env.INTERCOM_APP_ID,
+            gaMeasurmentId: process.env.GA_MEASUREMENT_ID,
         }),
         // new FaviconsWebpackPlugin(path.resolve(__dirname, '../public/favicon.png')),
         new MiniCssExtractPlugin({
@@ -85,6 +86,7 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             APP_API_URL: JSON.stringify(process.env.APP_API_URL),
+            SENTRY_DSN: JSON.stringify(process.env.SENTRY_DSN),
         }),
         new ImageMinimizerPlugin({
             minimizerOptions: {

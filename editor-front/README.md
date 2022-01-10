@@ -18,6 +18,8 @@ In order to start project development on the package follow these steps:
  - Create a `.env` file with the following content: 
     - `APP_API_URL=<api_url>`(without a trailing slash), where `<api_url>` is the backend url.
     - `INTERCOM_APP_ID=<app_id>`, where <app_id> is the ID provided by Intercom
+    - `SENTRY_DSN=<sentry_dsn>`, where <sentry_dsn> is the DSN provided by Sentry
+    - `GA_MEASUREMENT_ID=<ga_measurment_id>`, where <ga_measurment_id> is the ID provided by GA
  - Run the project through `yarn start`
 
 Note: Avoid using `npm` when working with packages, this will create an unnecessary lockfile(`yarn` already creates one).

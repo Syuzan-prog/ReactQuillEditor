@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <title></title>
+    <title>Editor</title>
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Intercom init start -->
     <script>
       window.intercomSettings = {
         app_id: '<%= htmlWebpackPlugin.options.intercomAppId %>'
@@ -19,5 +21,17 @@
     // We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/eqqzbm6o'
     (function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',w.intercomSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.Intercom=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/<%= htmlWebpackPlugin.options.intercomAppId %>';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
     </script>
+    <!-- Intercom init end -->
+
+    <!-- GA init start -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<%= htmlWebpackPlugin.options.gaMeasurmentId %>"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '<%= htmlWebpackPlugin.options.gaMeasurmentId %>');
+    </script>
+    <!-- GA init end -->
   </body>
 </html>

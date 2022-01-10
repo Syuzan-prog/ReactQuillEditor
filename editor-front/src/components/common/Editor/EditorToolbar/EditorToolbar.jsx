@@ -7,11 +7,9 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import RedoIcon from '@mui/icons-material/Redo';
 import UndoIcon from '@mui/icons-material/Undo';
 
-import { Button } from '@mui/material';
-import Table from './Table';
+import EditorTable from './EditorTable';
 
-import { handleExportPdfimg, handleExportPdfFile, handleExportDocx } from './editorFunc';
-import Popover from '../../Popover';
+import { handleExportPdfFile, handleExportDocx } from './editorFunc';
 
 const EditorToolbar = ({ value, editorRef, toolbarId }) => (
     <div id={toolbarId} style={{ marginBottom: '20px' }}>
@@ -104,16 +102,16 @@ const EditorToolbar = ({ value, editorRef, toolbarId }) => (
                 <RedoIcon />
             </IconButton>
         </span>
-        <Table />
-        <Popover>
-            <Button onClick={() => handleExportPdfimg(value)}>img</Button>
-            <Button onClick={() => handleExportPdfFile(editorRef)}>file</Button>
-        </Popover>
+        <EditorTable editorRef={editorRef} />
+        <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => handleExportPdfFile(editorRef, value)}>
+            <PictureAsPdfIcon />
+        </IconButton>
         <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => handleExportDocx(value)}>
             <InsertDriveFileIcon />
         </IconButton>
     </div>
 );
+
 EditorToolbar.propTypes = {
     value: PropTypes.string,
     editorRef: PropTypes.object, // eslint-disable-line react/forbid-prop-types

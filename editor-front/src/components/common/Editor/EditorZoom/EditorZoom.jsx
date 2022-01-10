@@ -7,7 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 const minScale = 1;
-const maxScale = 3;
+const maxScale = 1.3;
 const defaultPosition = { x: 0, y: 0, scale: minScale, duration: 100 };
 
 const EditorZoom = ({ editorRef, children }) => {
@@ -26,7 +26,7 @@ const EditorZoom = ({ editorRef, children }) => {
     const onZoomIn = useCallback(() => {
         const { scale } = position;
         if (scale < maxScale) {
-            const newPosition = { ...position, scale: scale + 0.2 };
+            const newPosition = { ...position, scale: scale + 0.1 };
             quickPinchZoomRef.current?.scaleTo(newPosition);
         }
     }, [position]);
@@ -34,7 +34,7 @@ const EditorZoom = ({ editorRef, children }) => {
     const onZoomOut = useCallback(() => {
         const { scale } = position;
         if (scale > minScale) {
-            const newPosition = { ...position, scale: scale - 0.2 };
+            const newPosition = { ...position, scale: scale - 0.1 };
             quickPinchZoomRef.current?.scaleTo(newPosition);
         }
     }, [position]);

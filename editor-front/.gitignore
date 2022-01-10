@@ -4,7 +4,7 @@
 /dist
 /node_modules
 yarn-error.log
-.env.example
+.env
 stats.json.log
 **/.DS_Store
 deploy*.sh

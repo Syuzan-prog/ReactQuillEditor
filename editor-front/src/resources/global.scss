@@ -124,7 +124,6 @@ body {
   .ql-snow .ql-picker.ql-lineheight .ql-picker-label[data-value='5.0']::before {content: '5.0' !important;}
 
   .ql-container {
-      width: 210mm;
       min-height: 197mm;
       background: white;
       margin: 0px auto
@@ -134,7 +133,15 @@ body {
       overflow: visible !important;
   }
 
-  .zoom {
-    transform-origin: center top;
-  }
+
+
+//   .MuiSlider-mark {
+//     backgroundColor: red;
+//     height: 8;
+//     width: 1;
+//     .MuiSlider-markActive: {
+//         opacity: 1;
+//         backgroundColor: red;
+//     };
+// };
 

@@ -1,59 +1,50 @@
-import htmlDocx from 'html-docx-js/dist/html-docx';
-import { saveAs } from 'file-saver';
-import html2canvas from 'html2canvas';
+import { useState, useCallback } from 'react';
 import { jsPDF } from 'jspdf';
-import { drawDOM, exportPDF } from '@progress/kendo-drawing';
-import { PDFExport, savePDF } from '@progress/kendo-react-pdf';
 
-export const handleExportPdfimg = async (value) => {
-
+export const handleExportPdfFile = async (editorRef, value) => {
     if (value) {
         const el = document.querySelector('.ql-editor');
+        const doc = new jsPDF('p', 'pt', 'a4');
+        doc.html(el, {
+            callback(pdf) {
+                const pageCount = doc.internal.getNumberOfPages();
+                pdf.deletePage(pageCount);
+                pdf.save('my.pdf');
+            },
+        });
 
-        const canvas = await html2canvas(el);
-
-        const image = await canvas.toDataURL();
-
-        const doc = new jsPDF('p', 'mm', 'a4');
-
-        doc.addImage(image, 'PNG', 0, 0);
-
-        doc.internal.getNumberOfPages();
-        // console.log(doc.internal.getNumberOfPages())
-        // var doc = new jsPDF('landscape') //horizonakan paper
-        // doc.internal.getNumberOfPages() // qani paper ka
-        // doc.autoTable
-        // doc.addPage() // nor paper i avelacum
-        // doc.deletePage(1) // jnjum e 1 papery
-        // doc.text(20, 20, 'Do you like that?')
-        doc.save('test.pdf');
     } else {
         alert('');
     }
 };
 
-export const handleExportPdfFile = (editorRef) => {
-    savePDF(editorRef.current, {
-        paperSize: 'auto',
-        fileName: `Report for ${new Date().getMilliseconds()}`,
-    });
-
-    // const gridElement = document.querySelector('.editor'); /
-    // drawDOM(gridElement, {
-    //     paperSize: 'A4',
-    // }).then((group) => exportPDF(group)).then((dataUri) => {
-    //     console.log('.../', dataUri.split(';base64,')[1]); /// back-end uxarkelu
-    // });
-};
-
 export const handleExportDocx = (value) => {
     if (value) {
 
-        const finalHtml = `<html><head><meta charset="UTF-8"></head><body>${value}</body></html>`;
+        const html = `<html><head><meta charset="UTF-8"></head><body>${value}</body></html>`;
 
-        const converted = htmlDocx.asBlob(finalHtml);
+        const blob = new Blob(['\ufeff', html], {
+            type: 'application/msword',
+        });
 
-        saveAs(converted, 'test.docx');
+        const url = `data:application/vnd.ms-word;charset=utf-8,${encodeURIComponent(html)}`;
+
+        const filename = `Report for ${new Date().getMilliseconds()}.docx`;
+
+        const downloadLink = document.createElement('a');
+
+        document.body.appendChild(downloadLink);
+
+        if (navigator.msSaveOrOpenBlob) {
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            downloadLink.href = url;
+
+            downloadLink.download = filename;
+
+            downloadLink.click();
+        }
+        document.body.removeChild(downloadLink);
     } else {
         alert('');
     }

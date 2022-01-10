@@ -237,6 +237,7 @@ const settings = {
     },
     globals: {
         APP_API_URL: true,
+        SENTRY_DSN: true,
         Intercom: true,
     },
 };
