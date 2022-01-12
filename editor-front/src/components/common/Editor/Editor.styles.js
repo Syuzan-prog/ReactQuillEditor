@@ -7,6 +7,11 @@ export const EditorWrapper = styled('div')(
 
         .editor-zoom {
             transform-origin: center top;
+            width: 210mm;
+        }
+
+        #editor {
+            width: 100%;
         }
     `
 );

@@ -7,12 +7,12 @@ const namespace = 'datasources';
 
 export const deleteDocument = createAction(
     `${namespace} | delete`,
-    (id, deleteConnectedEntities = false, onSuccess) => ({ id, deleteConnectedEntities, onSuccess })
+    (id) => ({ id })
 );
 
 export const deleteDocumentSuccess = createAction(
     `${namespace} | delete success`,
-    (id, deleteConnectedEntities) => ({ id, deleteConnectedEntities })
+    (id) => ({ id })
 );
 
 const deleteDocumentFail = createAction(
@@ -29,17 +29,15 @@ export const reducer = {
         return ({
             ...state,
             entities,
-            idMap: state.idMap.filter((id) => id !== id),
+            idMap: state.idMap.filter((idD) => idD !== id),
         });
     },
 };
 
-function* deleteDocumentSaga({ payload: { id, deleteConnectedEntities, onSuccess } }) {
-    const { success, error } = yield call(api.editor.deleteDocument, id, deleteConnectedEntities);
-
+function* deleteDocumentSaga({ payload: { id } }) {
+    const { success, error } = yield call(api.editor.deleteDocument, id);
     if (success) {
-        yield put(deleteDocumentSuccess(id, deleteConnectedEntities));
-        onSuccess();
+        yield put(deleteDocumentSuccess(id));
     } else {
         yield put(deleteDocumentFail(error));
     }

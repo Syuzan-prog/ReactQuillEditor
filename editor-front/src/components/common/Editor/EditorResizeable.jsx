@@ -1,28 +1,26 @@
 import React, { useRef, useEffect } from 'react';
 
-const EditorResizeable = () => {
+import { EditorResizeableWrapper } from './EditorResizeable.styles';
+
+const EditorResizeable = ({ children, resizableRef }) => {
     const ref = useRef(null);
-    const refLeft = useRef(null);
-    const refRight = useRef(null);
 
     useEffect(() => {
         const resizeableEle = ref.current;
-        const styles = window.getComputedStyle(resizeableEle);
+        const styles = window.getComputedStyle(resizableRef.current);
         let width = parseInt(styles.width, 10);
         let x = 0;
-
-        resizeableEle.style.top = '50px';
-        resizeableEle.style.left = '50px';
-
+        resizeableEle.style.top = '380px';
         // Right resize
         const onMouseMoveRightResize = (event) => {
             const dx = event.clientX - x;
             x = event.clientX;
             width += dx;
+            console.log(width);
             resizeableEle.style.width = `${width}px`;
         };
 
-        const onMouseUpRightResize = (event) => {
+        const onMouseUpRightResize = () => {
             document.removeEventListener('mousemove', onMouseMoveRightResize);
         };
 
@@ -42,7 +40,7 @@ const EditorResizeable = () => {
             resizeableEle.style.width = `${width}px`;
         };
 
-        const onMouseUpLeftResize = (event) => {
+        const onMouseUpLeftResize = () => {
             document.removeEventListener('mousemove', onMouseMoveLeftResize);
         };
 
@@ -55,9 +53,10 @@ const EditorResizeable = () => {
         };
 
         // Add mouse down event listener
-        const resizerRight = refRight.current;
+
+        const resizerRight = resizableRef.current;
         resizerRight.addEventListener('mousedown', onMouseDownRightResize);
-        const resizerLeft = refLeft.current;
+        const resizerLeft = resizableRef.current;
         resizerLeft.addEventListener('mousedown', onMouseDownLeftResize);
 
         return () => {
@@ -67,12 +66,9 @@ const EditorResizeable = () => {
     }, []);
 
     return (
-        <div className="container">
-            <div ref={ref} className="resizeable">
-                <div ref={refLeft} className="resizer resizer-l" />
-                <div ref={refRight} className="resizer resizer-r" />
-            </div>
-        </div>
+        <EditorResizeableWrapper ref={ref}>
+            {children}
+        </EditorResizeableWrapper>
     );
 };
 

@@ -1,17 +1,15 @@
-import React, { useEffect, useCallback, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import clsx from 'clsx';
-import { generatePath } from 'react-router';
 import PropTypes from 'prop-types';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 import ScrollActionContainer from 'components/common/ScrollActionContainer';
-
 import { routes } from 'configs/app.routes';
+import ListItem from './ListItem';
 
 import { HomePageWrapper } from './HomePage.styles';
 
@@ -21,16 +19,8 @@ const HomePage = ({ posts, fetchPosts, deleteDocument, isLoading, hasMore }) => 
         fetchPosts(20, 0, true);
     }, [fetchPosts]);
 
-    const handleDelete = useCallback(() => {
-        // openModal(DELETE_ENTITY_MODAL_NAME, {
-        //     id: row.id,
-        //     entity: 'datasource',
-        //     onDelete: deleteDocument,
-        // });
-        deleteDocument();
-    }, []);
-
     const containerRef = useRef();
+    console.log("posts", posts)
     return (
         <HomePageWrapper>
             <div className="header">
@@ -56,14 +46,7 @@ const HomePage = ({ posts, fetchPosts, deleteDocument, isLoading, hasMore }) => 
                 >
                     <List>
                         {posts.map((post) => (
-                            <ListItem key={post.id}>
-                                <div className="post-list" key={post.id}>
-                                    {/* <Typography variant="h5" color="primary">{item.title}</Typography> */}
-                                    <div className="post__description" dangerouslySetInnerHTML={{ __html: post.editor }} />
-                                    <Link to={generatePath(routes._app.edit, { id: post.id })}> Edit </Link>
-                                    <Button onClick={handleDelete}>Delite</Button>
-                                </div>
-                            </ListItem>
+                            <ListItem key={post.id} post={post} deleteDocument={deleteDocument} />
                         ))}
                     </List>
                     {(!isLoading && !posts.length) && 'no Result'}
@@ -74,7 +57,7 @@ const HomePage = ({ posts, fetchPosts, deleteDocument, isLoading, hasMore }) => 
 };
 
 HomePage.propTypes = {
-    posts: PropTypes.array,
+    posts: PropTypes.arrayOf(PropTypes.object),
     deleteDocument: PropTypes.func.isRequired,
     fetchPosts: PropTypes.func.isRequired,
     isLoading: PropTypes.bool,

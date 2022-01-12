@@ -1,19 +1,19 @@
 export const auth = {
-    signin: () => `http://localhost:5000/api/auth/login`,
+    signin: () => 'http://localhost:5000/api/auth/login',
     signup: () => `${APP_API_URL}/auth/signup/`,
     recoverPassword: () => `${APP_API_URL}/auth/recover_password/`,
     resetPassword: () => `${APP_API_URL}/auth/reset_password/`,
     join: () => `${APP_API_URL}/join_waitlist/`,
     verify: (token) => `http://localhost:5000/api/auth/${token}`,
     verification: {
-        meta: () => `http://localhost:5000/api/auth/auth`,
+        meta: () => 'http://localhost:5000/api/auth/auth',
         requestCode: () => `${APP_API_URL}/auth/send_code/`,
         sendCode: () => `${APP_API_URL}/auth/verify_email/`,
     },
 };
 
 export const account = {
-    me: () => `http://localhost:5000/api/auth/auth`,
+    me: () => 'http://localhost:5000/api/auth/auth',
     changePassword: () => `${APP_API_URL}/users/me/change_password/`,
     changeRecoveryEmail: () => `${APP_API_URL}/users/me/set_recovery_email/`,
     verifyRecoveryEmail: () => `${APP_API_URL}/users/me/verify_recovery_email/`,
@@ -27,9 +27,9 @@ export const dataFetchers = {
 };
 
 export const editor = {
-    save: () => `http://localhost:5000/api/posts`,
-    list: () => `http://localhost:5000/api/posts/posts`,
+    save: () => 'http://localhost:5000/api/posts',
+    list: () => 'http://localhost:5000/api/posts/posts',
     one: (id) => `http://localhost:5000/api/posts/post/${id}`,
     update: (id) => `http://localhost:5000/api/posts/update/${id}`,
-    delite: (id) => `${APP_API_URL}/datasources/${id}`,
+    delite: (id) => `http://localhost:5000/api/posts/delite/${id}`,
 };

@@ -1,5 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
-import { Resizable } from 're-resizable';
+import React, { useMemo, useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
 
@@ -11,11 +10,13 @@ import EditorZoom from './EditorZoom';
 import EditorSlider from './EditorSlider/EditorSlider';
 
 import { EditorWrapper } from './Editor.styles';
+import EditorResizeable from './EditorResizeable';
 
 export const Editor = ({ editorHtml, meta, handleChange, id, className, ...props }) => {
+    const [value, setValue] = useState([10, 90]);
     const error = useMemo(() => meta && isInvalid(meta) && meta.error, [meta]);
-    const editorRef = useRef();
-    const [widthValue, setWidthValue] = useState(700);
+    const editorRef = useRef(null);
+
     return (
         <>
             <EditorZoom editorRef={editorRef}>
@@ -23,28 +24,17 @@ export const Editor = ({ editorHtml, meta, handleChange, id, className, ...props
                     <EditorToolbar value={editorHtml} toolbarId={EDITOR_FIELD_ID_NAME} editorRef={editorRef} />
                     <EditorWrapper>
                         <div ref={editorRef} className="editor-zoom">
-                            <EditorSlider widthValue={widthValue} />
-                            <div style={{ width: '210mm', background: 'white', display: 'flex', justifyContent: 'center' }}>
-                                <Resizable
-                                    enable={{ right: true, left: true }}
-                                    minWidth="500px"
-                                    size={{ width: widthValue }}
-                                    bounds="parent"
-                                    onResizeStop={(e, direction, ref, d) => {
-                                        setWidthValue(widthValue + d.width);
-                                    }}
-                                >
-                                    <ReactQuill
-                                        value={editorHtml}
-                                        onChange={handleChange}
-                                        {...props}
-                                        id={id}
-                                        theme="snow"
-                                        modules={modules(EDITOR_FIELD_ID_NAME)}
-                                    />
-                                </Resizable>
-                            </div>
-
+                            <EditorSlider value={value} setValue={setValue} sx={{background:"red"}}/>
+                            <EditorResizeable resizableRef={editorRef} >
+                                <ReactQuill
+                                    value={editorHtml}
+                                    onChange={handleChange}
+                                    {...props}
+                                    id={id}
+                                    theme="snow"
+                                    modules={modules(EDITOR_FIELD_ID_NAME)}
+                                />
+                            </EditorResizeable>
                         </div>
                     </EditorWrapper>
                     { error && <div className="errors"> Error</div> }
