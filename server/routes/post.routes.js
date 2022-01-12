@@ -1,5 +1,5 @@
 const Router = require("express");
-const Campaign =  require("../models/Campaign");
+const Document =  require("../models/Document");
 
 const router = new Router()
 
