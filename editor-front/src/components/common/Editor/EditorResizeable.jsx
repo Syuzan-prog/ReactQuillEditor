@@ -2,9 +2,9 @@ import React, { useRef, useEffect } from 'react';
 
 import { EditorResizeableWrapper } from './EditorResizeable.styles';
 
-const EditorResizeable = ({ children, resizableRef }) => {
+const EditorResizeable = ({ children, resizableRef, value }) => {
     const ref = useRef(null);
-
+    console.log(',',value)
     useEffect(() => {
         const resizeableEle = ref.current;
         const styles = window.getComputedStyle(resizableRef.current);

@@ -2,7 +2,7 @@
 const {model, Schema, ObjectId} = require('mongoose')
 
 const Campaign = new Schema({
-    editor: {type: String, required: true},
+    editor: {type: String},
     files : [{type: ObjectId, ref:'File'}]
 })
 

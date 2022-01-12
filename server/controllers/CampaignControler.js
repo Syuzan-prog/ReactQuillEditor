@@ -36,9 +36,9 @@ class CampaignControler {
             res.status(500).json(e.message)
         }
     }
-    async delete(req, res) {
+    async delete(req, res) {    
         try {
-            const campaign = await CampaignService.create(req.params.id);
+            const campaign = await CampaignService.delete(req.params.id);
             return res.json(campaign)
         } catch (e) {
             res.status(500).json(e)

@@ -25,7 +25,7 @@ export const Editor = ({ editorHtml, meta, handleChange, id, className, ...props
                     <EditorWrapper>
                         <div ref={editorRef} className="editor-zoom">
                             <EditorSlider value={value} setValue={setValue} sx={{background:"red"}}/>
-                            <EditorResizeable resizableRef={editorRef} >
+                            <EditorResizeable resizableRef={editorRef} value={value}>
                                 <ReactQuill
                                     value={editorHtml}
                                     onChange={handleChange}

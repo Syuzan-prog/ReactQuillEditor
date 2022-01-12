@@ -32,11 +32,11 @@ class CampaignService {
     }
 
     async delete(id) {
-            if (!id) {
+            if (!id) {        
                 throw new Error('not specified ID')
             }
             const campaign = await Campaign.findByIdAndDelete(id);
-            return campaignost;
+            return campaign;
     }
 }
 
