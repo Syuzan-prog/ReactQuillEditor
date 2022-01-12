@@ -10,22 +10,31 @@ import EditorZoom from './EditorZoom';
 import EditorSlider from './EditorSlider/EditorSlider';
 
 import { EditorWrapper } from './Editor.styles';
-import EditorResizeable from './EditorResizeable';
 
 export const Editor = ({ editorHtml, meta, handleChange, id, className, ...props }) => {
-    const [value, setValue] = useState([10, 90]);
+    const [value, setValue] = useState([0, 100]);
     const error = useMemo(() => meta && isInvalid(meta) && meta.error, [meta]);
     const editorRef = useRef(null);
+    const editorQuilParentRef = useRef(null);
 
     return (
         <>
             <EditorZoom editorRef={editorRef}>
                 <div className={className}>
-                    <EditorToolbar value={editorHtml} toolbarId={EDITOR_FIELD_ID_NAME} editorRef={editorRef} />
+                    <EditorToolbar value={editorHtml} toolbarId={EDITOR_FIELD_ID_NAME}/>
                     <EditorWrapper>
                         <div ref={editorRef} className="editor-zoom">
-                            <EditorSlider value={value} setValue={setValue} sx={{background:"red"}}/>
-                            <EditorResizeable resizableRef={editorRef} value={value}>
+                            <EditorSlider value={value} onChangeCommitted={setValue} onChange={(v)=>{
+                                const elem = editorQuilParentRef.current;
+                                if(elem){
+                                    const width =  v[1] - v[0];
+                                    const posX = v[0];
+                                    elem.style.width = `${width}%`
+                                    elem.style.marginLeft = `${posX}%`
+                                    
+                                }
+                            }} />
+                            <div ref={editorQuilParentRef}>
                                 <ReactQuill
                                     value={editorHtml}
                                     onChange={handleChange}
@@ -34,7 +43,7 @@ export const Editor = ({ editorHtml, meta, handleChange, id, className, ...props
                                     theme="snow"
                                     modules={modules(EDITOR_FIELD_ID_NAME)}
                                 />
-                            </EditorResizeable>
+                            </div>
                         </div>
                     </EditorWrapper>
                     { error && <div className="errors"> Error</div> }
