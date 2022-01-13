@@ -123,10 +123,13 @@ body {
   .ql-snow .ql-picker.ql-lineheight .ql-picker-item[data-value='5.0']::before {content: '5.0';}
   .ql-snow .ql-picker.ql-lineheight .ql-picker-label[data-value='5.0']::before {content: '5.0' !important;}
 
-  .ql-container {
+  .ql-container.ql-snow {
       min-height: 197mm;
       background: white;
-      margin: 0px auto
+      margin: 0px auto;
+      border: none;
+      border-left: 1px solid #ccc;
+      border-right: 1px solid #ccc;
   }
 
   .kvfysmfp {

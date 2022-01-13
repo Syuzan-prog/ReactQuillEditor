@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState, useEffect } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
 
@@ -16,7 +16,8 @@ export const Editor = ({ editorHtml, meta, handleChange, id, className, ...props
     const error = useMemo(() => meta && isInvalid(meta) && meta.error, [meta]);
     const editorRef = useRef(null);
     const editorQuilParentRef = useRef(null);
-
+    // const table = quillRef.getModule('table');
+    // table.insertTable(2, 2);
     return (
         <>
             <EditorZoom editorRef={editorRef}>

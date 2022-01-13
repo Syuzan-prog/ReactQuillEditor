@@ -11,7 +11,7 @@ import EditorTable from './EditorTable';
 
 import { handleExportPdfFile, handleExportDocx } from './editorFunc';
 
-const EditorToolbar = ({ value, editorRef, toolbarId }) => (
+const EditorToolbar = ({ value, toolbarId }) => (
     <div id={toolbarId} style={{ marginBottom: '20px' }}>
         <span className="ql-formats">
             <select className="ql-font">
@@ -102,7 +102,10 @@ const EditorToolbar = ({ value, editorRef, toolbarId }) => (
                 <RedoIcon />
             </IconButton>
         </span>
-        <EditorTable editorRef={editorRef} />
+        <EditorTable />
+        <button className="ql-insertTable">
+            Insert
+        </button>
         <IconButton color="primary" aria-label="upload picture" component="span" onClick={() => handleExportPdfFile(editorRef, value)}>
             <PictureAsPdfIcon />
         </IconButton>

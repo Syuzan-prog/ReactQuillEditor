@@ -1,10 +1,10 @@
 import { Quill } from 'react-quill';
 import ImageResize from 'quill-image-resize-module-react';
 import ImageCompress from 'quill-image-compress';
-// Quill.getModule("better-table");
 
 Quill.register('modules/ImageResize', ImageResize);
 Quill.register('modules/imageCompress', ImageCompress);
+Quill.register("modules/better-table", QuillBetterTable);
 
 const Font = Quill.import('formats/font');
 Font.whitelist = ['arial', 'comic-sans', 'courier-new', 'georgia', 'helvetica', 'lucida'];
@@ -43,12 +43,26 @@ function redoChange() {
     this.quill.history.redo();
 }
 
+function insertTable() {
+    const text = 'example123'
+    // need this to be accessed from props.text
+    const cursorPosition = this.quill.getSelection().index;
+  
+    // this.quill.insertText(cursorPosition, text);
+    // this.quill.setSelection(cursorPosition + (text.length));
+    const table = this.quil.getModule('table');
+    this.quil.insertTable(cursorPosition, table);
+    this.quill.setSelection(cursorPosition);
+    console.log(this.quill)
+  }
+
 export const modules = (props) => ({
     toolbar: {
         container: `#${props}`,
         handlers: {
             undo: undoChange,
             redo: redoChange,
+            insertText: insertTable
         },
     },
     history: {

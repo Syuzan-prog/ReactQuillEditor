@@ -1,5 +1,8 @@
 import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { EditorSliderWrapper } from './EditorSlider.styles';
+
+import { marks } from 'constants/editor.constants'
 
 const EditorSlider = ({ value, onChangeCommitted, onChange }) => {
     const key = `EditorSlider-${value}`
@@ -46,10 +49,7 @@ const EditorSlider = ({ value, onChangeCommitted, onChange }) => {
 
     return (
         <EditorSliderWrapper
-            // marks={marks}
             valueLabelDisplay="auto"
-            // getAriaLabel={(index) =>
-            // (index === 0 ? 'Minimum price' : 'Maximum price')}
             key={key}
             min={0}
             max={100}
@@ -59,8 +59,15 @@ const EditorSlider = ({ value, onChangeCommitted, onChange }) => {
             onChangeCommitted={handleChangeCommitted}
             disableSwap
             steps={null}
+            marks={marks}
         />
     );
 };
+
+EditorSlider.propTypes = {
+    value: PropTypes.arrayOf(PropTypes.number),
+    onChangeCommitted: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+}
 
 export default EditorSlider;

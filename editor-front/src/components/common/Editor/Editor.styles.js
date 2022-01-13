@@ -8,6 +8,7 @@ export const EditorWrapper = styled('div')(
         .editor-zoom {
             transform-origin: center top;
             width: 210mm;
+            background: white;
         }
 
         #editor {
