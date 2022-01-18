@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useMemo, useRef, useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
 
@@ -7,7 +7,8 @@ import { modules } from 'configs/modules';
 import { EDITOR_FIELD_ID_NAME } from 'constants/editor.constants';
 import EditorToolbar from './EditorToolbar';
 import EditorZoom from './EditorZoom';
-import EditorSlider from './EditorSlider/EditorSlider';
+import EditorSlider from './EditorSlider';
+import EditorMenu from './EditorMenu';
 
 import { EditorWrapper } from './Editor.styles';
 
@@ -16,8 +17,19 @@ export const Editor = ({ editorHtml, meta, handleChange, id, className, ...props
     const error = useMemo(() => meta && isInvalid(meta) && meta.error, [meta]);
     const editorRef = useRef(null);
     const editorQuilParentRef = useRef(null);
-    // const table = quillRef.getModule('table');
-    // table.insertTable(2, 2);
+
+    const handlechange = useCallback(
+        (event) => {
+            event.preventDefault()
+            const string = window.getSelection.toString()
+            if(window.getSelection().toString()){
+                return <EditorMenu string={string} />
+            }
+        },
+        [],
+    )
+
+    
     return (
         <>
             <EditorZoom editorRef={editorRef}>
@@ -35,7 +47,7 @@ export const Editor = ({ editorHtml, meta, handleChange, id, className, ...props
                                     
                                 }
                             }} />
-                            <div ref={editorQuilParentRef}>
+                            <div ref={editorQuilParentRef} onContextMenu={handlechange} >
                                 <ReactQuill
                                     value={editorHtml}
                                     onChange={handleChange}

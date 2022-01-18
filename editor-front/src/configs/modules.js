@@ -1,6 +1,8 @@
 import { Quill } from 'react-quill';
 import ImageResize from 'quill-image-resize-module-react';
 import ImageCompress from 'quill-image-compress';
+// import * as Quill from "quill";
+import QuillBetterTable from 'quill-better-table'
 
 Quill.register('modules/ImageResize', ImageResize);
 Quill.register('modules/imageCompress', ImageCompress);
@@ -44,16 +46,32 @@ function redoChange() {
 }
 
 function insertTable() {
-    const text = 'example123'
-    // need this to be accessed from props.text
-    const cursorPosition = this.quill.getSelection().index;
-  
+    // const text = '<b>example123</b>'
+    // const htmlTable = this.quill.getContents()
+    // const cursorPosition = this.quill.getSelection().index;
     // this.quill.insertText(cursorPosition, text);
     // this.quill.setSelection(cursorPosition + (text.length));
-    const table = this.quil.getModule('table');
-    this.quil.insertTable(cursorPosition, table);
-    this.quill.setSelection(cursorPosition);
-    console.log(this.quill)
+    // this.quill.insertTable(3, 3);
+
+
+    // const range = this.quill.getSelection(true)
+    // this.quill.insertEmbed(range.index, 'table',[2,2] , 'user')
+    // this.quill.setSelection(range.index + 1, 'silent')
+    // const value = `<table border="2"><tr><th>New</th><th>Country</th><th>Contact</th></tr></table>`
+    // const delta = this.quill.clipboard.convert(value)
+    // this.quill.setContents(delta, 'silent')
+
+    // var htmlToInsert = `<table style="width:100%" border="2"><tr><th>Company</th><th>Contact</th><th>Country</th></tr></table>`
+    // var editor = document.getElementsByClassName('ql-editor')
+    // editor[0].innerHTML = htmlToInsert
+
+    // this.quill.getModule("better-table");
+    // let tableModule = this.getEditor().getModule('better-table');
+    // tableModule.insertTable(3, 3)
+
+    // let tableModule = this.quill.getModule()
+    // console.log(tableModule)
+    // tableModule.insertTable(3, 3)
   }
 
 export const modules = (props) => ({
@@ -62,8 +80,8 @@ export const modules = (props) => ({
         handlers: {
             undo: undoChange,
             redo: redoChange,
-            insertText: insertTable
-        },
+            insertTable: insertTable
+        }, 
     },
     history: {
         delay: 500,
@@ -82,3 +100,6 @@ export const modules = (props) => ({
         debug: true,
     },
 });
+
+
+
